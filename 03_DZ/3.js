@@ -19,9 +19,9 @@
  */
 const maxNumber = (a, b, c) => Math.max(a, b, c);
 
-const oneNumberUser = prompt("Введите первое число");
-const twoNumberUser = prompt("Введите второе число");
-const threeNumberUser = prompt("Введите третье число");
+const oneNumberUser = Number(prompt("Введите первое число"));
+const twoNumberUser = Number(prompt("Введите второе число"));
+const threeNumberUser = Number(prompt("Введите третье число"));
 
 // Я решил вынести в отдельную переменную, потому что строка вывода получается слишком длинная.
 const maxNumberResult = maxNumber(oneNumberUser, twoNumberUser, threeNumberUser);

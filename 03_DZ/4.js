@@ -24,18 +24,16 @@ const mult = (a, b) => a * b;
 function diff(a, b) {
   if (a > b) {
     return a - b;
-  } else {
-    return b - a;
   }
+  return b - a;
 }
 
 // тут я тоже проверил делил большее на меньшее
 function div(a, b) {
   if (a > b) {
-    return (a / b) * 100 / 100;
-  } else {
-    return (b / a) * 100 / 100;
+    return ((a / b) * 100) / 100;
   }
+  return ((b / a) * 100) / 100;
 }
 function resultOperation(a, b, operation) {
   switch (operation) {
@@ -69,5 +67,3 @@ alert(
     operationSing
   )}`
 );
-
-

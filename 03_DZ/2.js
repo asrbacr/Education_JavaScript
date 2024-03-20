@@ -11,11 +11,11 @@
 
 const userData = Number(prompt("Введите число"));
 
-if (userData === "NaN") {
+if (!Number.isNaN(userData) && !Number.isFinite(userData)) {
   console.log("Значение задано неверно");
 } else {
   console.log(
-    `Размер заработной платы за вычетом налогов равен ${incomeTax(userData)}.`
+    `Размер заработной платы за вычетом налогов равен ${incomeTax(userData).toFixed(2)}.`
   );
 }
 
@@ -25,5 +25,5 @@ if (userData === "NaN") {
  * @returns {string} Текстовое значение с фиксированным округлением до 2 символов после запятой.
  */
 function incomeTax(salary) {
-  return (Math.round(salary * 0.87 * 100) / 100).toFixed(2);
+  return Math.round(salary * 0.87 * 100) / 100;
 }
