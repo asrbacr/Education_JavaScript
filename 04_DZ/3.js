@@ -15,7 +15,7 @@
 */
 
 const array = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 5; i++) {
   array.push(Math.trunc(Math.random() * 10));
 }
 console.log(array);
