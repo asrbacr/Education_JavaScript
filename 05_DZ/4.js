@@ -31,10 +31,34 @@ const products = [
   },
 ];
 
-const filterProducts = products.filter((elem) => {
-  if (!isFinite(elem.photos)) {
-    console.log(true);
-  } else console.log(false);
-});
+console.log(products);
+console.log(products[3]);
 
+// Рассуждение по поиску отсеиванию элементов без photos
+/* const resultArray = [];
+for (const item of products) {
+  for (const key in item) {
+    if (key === "photos") {
+      resultArray.push(item);
+      break;
+    }
+  }
+}
+console.log(resultArray); */
+
+// Применение filter
+const filterProducts = products.filter((elem) => {
+  for (const key in elem) {
+    if (key === "photos") {
+      return true;
+    }
+  }
+});
+console.log(filterProducts);
+
+const sortProduct = [];
+
+filterProducts.sort((a, b) => {
+  return a - b;
+});
 console.log(filterProducts);
