@@ -35,7 +35,8 @@ console.log(products);
 console.log(products[3]);
 
 // Рассуждение по поиску отсеиванию элементов без photos
-/* const resultArray = [];
+// Применение filter. я не догадался.
+const resultArray = [];
 for (const item of products) {
   for (const key in item) {
     if (key === "photos") {
@@ -44,21 +45,10 @@ for (const item of products) {
     }
   }
 }
-console.log(resultArray); */
+console.log(resultArray);
 
-// Применение filter
-const filterProducts = products.filter((elem) => {
-  for (const key in elem) {
-    if (key === "photos") {
-      return true;
-    }
-  }
+// я не догадался, что нужно к переменным a и b добавить .price
+const sortProduct = products.sort((a, b) => {
+  return a.price - b.price;
 });
-console.log(filterProducts);
-
-const sortProduct = [];
-
-filterProducts.sort((a, b) => {
-  return a - b;
-});
-console.log(filterProducts);
+console.log(sortProduct);
