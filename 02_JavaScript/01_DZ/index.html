@@ -38,13 +38,36 @@
       }
 
       // 3. Найти все элементы на странице с классом "card-link", которые лежат в элементе с классом "card-body" и вывести полученную коллекцию в консоль.
-      
-
+      const elLinkInBodyAll = document.querySelectorAll(
+        ".card-body .card-link"
+      );
+      console.log(elLinkInBodyAll);
 
       // 4. Найти первый попавшийся элемент на странице у которого есть атрибут data-number со значением 50 и вывести его в консоль.
+      const elDataNumber = document.querySelector('[data-number="50"]');
+      console.log(elDataNumber);
+
       // 5. Выведите содержимое тега title в консоль.
+      const titleEl = document.querySelector("title");
+      console.log(titleEl.innerHTML);
+
       // 6. Получите элемент с классом "card-title" и выведите его родительский узел в консоль.
+      const titleParentClassEl =
+        document.querySelector(".card-title").parentElement;
+      console.log(titleParentClassEl);
+
       // 7. Создайте тег p, запишите внутри него текст "Привет" и добавьте созданный тег в начало элемента, который имеет класс "card".
+      const pEl = document.createElement("p");
+      pEl.innerHTML = "Привет";
+
+      const cardEl = document.querySelector(".card");
+      console.log(cardEl);
+
+      cardEl.appendChild(pEl);
+
+      const parentEl = cardEl.parentElement;
+      console.log(parentEl);
+
       // 8. Удалите тег h6 на странице.
     </script>
   </body>
