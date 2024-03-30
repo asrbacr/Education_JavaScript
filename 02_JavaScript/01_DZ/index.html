@@ -59,16 +59,12 @@
       // 7. Создайте тег p, запишите внутри него текст "Привет" и добавьте созданный тег в начало элемента, который имеет класс "card".
       const pEl = document.createElement("p");
       pEl.innerHTML = "Привет";
-
       const cardEl = document.querySelector(".card");
-      console.log(cardEl);
-
-      cardEl.appendChild(pEl);
-
-      const parentEl = cardEl.parentElement;
-      console.log(parentEl);
+      cardEl.prepend(pEl);
 
       // 8. Удалите тег h6 на странице.
+      const hEl = document.querySelector("h6");
+      hEl.remove();
     </script>
   </body>
 </html>
