@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .backColor {
+        background-color: red;
+      }
+    </style>
   </head>
   <body>
     <p class="super_element">Привет</p>
@@ -88,12 +93,10 @@
 
       // 7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
       const liArray = document.querySelectorAll("li");
-      liArray.forEach((e) => {
-        
-        console.log(e);
-      });
-
-      console.log(liArray);
+      for (let i = 1; i < liArray.length; i++) {
+        liArray[i].classList.add("backColor");
+        i++;
+      }
     </script>
   </body>
 </html>
