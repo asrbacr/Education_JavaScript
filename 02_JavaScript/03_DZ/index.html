@@ -93,9 +93,8 @@
 
       // 7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
       const liArray = document.querySelectorAll("li");
-      for (let i = 1; i < liArray.length; i++) {
+      for (let i = 1; i < liArray.length; i = i + 2) {
         liArray[i].classList.add("backColor");
-        i++;
       }
     </script>
   </body>
