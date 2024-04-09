@@ -1,6 +1,8 @@
 /* Этот файл для отображения структуры всего репозитория */
 // qs - document.querySelector('selector'); - поиск первого
 // ae - document.addEventListener('load', function (e) {// body}); - действие
+// cel - document.createElement(); - создать элемент
+
 /*  [
     'load' - событие срабатывает, когда весь контент (изображения, скрипты) загружен,
     'click' - событие происходит при нажатии на элемент,
