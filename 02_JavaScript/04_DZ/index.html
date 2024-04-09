@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .error {
+        border: 2px solid orangered;
+        box-sizing: border-box;
+      }
+    </style>
   </head>
   <body>
     <input id="from" type="text" />
@@ -34,7 +40,7 @@
       <br />
       <br />
       <button>Отправить</button>
-    </form>
+    </for>
 
     <script>
       "use strict";
@@ -62,8 +68,31 @@
       });
 
       // 3. Необходимо при отправке формы проверить, заполнены ли все поля в этой форме. Если какое-либо поле не заполнено, форма не должна отправляться, также должны быть подсвечены незаполненные поля (необходимо поставить класс error незаполненным полям). Как только пользователь начинает заполнять какое-либо поле, необходимо, при вводе в данное поле, произвести проверку:
+      const formEl = document.querySelector('form');
+      const inputTextEl = formEl.querySelector('input.form-control');
+      const inputSelectEl = formEl.querySelector('select.form-control');
+      const subEl = formEl.querySelector('button');
+
+
       // - Если поле пустое, необходимо данное поле подсветить (поставить класс error данному полю).
+      formEl.addEventListener('submit', function (e){
+        e.preventDefault();
+        if (inputTextEl.value === '') {
+          inputTextEl.classList.add('error');
+        } 
+        if (inputSelectEl.value === '') {
+          inputSelectEl.classList.add('error');
+        }
+        return false;
+      });
+      
       // - Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.
+      inputTextEl.addEventListener('input', function (e) {
+        inputTextEl.classList.remove('error');
+      });
+      inputSelectEl.addEventListener('input', function (e) {
+        inputSelectEl.classList.remove('error');
+      });
     </script>
   </body>
 </html>
