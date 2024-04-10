@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .form {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .check {
+        color: yellow;
+      }
+    </style>
+    <script
+      src="https://kit.fontawesome.com/a7ddde55e8.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+  <body>
+    <form action="#" class="form">
+      <div class="rating">
+        <div class="rating_sing">
+          <label for="1" class="rating_sing_label"
+            ><i class="fa-solid fa-star"></i
+          ></label>
+          <input
+            type="radio"
+            class="rating_sing_input"
+            name="rating"
+            id="1"
+            value="1"
+          />
+        </div>
+        <div class="rating_sing">
+          <label for="2" class="rating_sing_label"
+            ><i class="fa-solid fa-star"></i
+          ></label>
+          <input
+            type="radio"
+            class="rating_sing_input"
+            name="rating"
+            id="2"
+            value="2"
+          />
+        </div>
+        <div class="rating_sing">
+          <label for="3" class="rating_sing_label"
+            ><i class="fa-solid fa-star"></i
+          ></label>
+          <input
+            type="radio"
+            class="rating_sing_input"
+            name="rating"
+            id="3"
+            value="3"
+          />
+        </div>
+        <div class="rating_sing">
+          <label for="4" class="rating_sing_label"
+            ><i class="fa-solid fa-star"></i
+          ></label>
+          <input
+            type="radio"
+            class="rating_sing_input"
+            name="rating"
+            id="4"
+            value="4"
+          />
+        </div>
+        <div class="rating_sing">
+          <label for="5" class="rating_sing_label"
+            ><i class="fa-solid fa-star"></i
+          ></label>
+          <input
+            type="radio"
+            class="rating_sing_input"
+            name="rating"
+            id="5"
+            value="5"
+          />
+        </div>
+      </div>
+    </form>
+    <script>
+      const buttonS = document.querySelector(".rating_sing_input");
+      const form = document.querySelector(".form");
+      const comment = document.querySelector(".rating_comment");
+
+      buttonS.forEach((radio) => {
+        radio.addEventListener("change", function (e) {
+          const checkedNumber =
+            document.querySelector(".rating_sign_input:checked").value ||
+            undefined;
+
+          buttonS.forEach((item) => {
+            const currentLabel = item.previousElementSibling;
+            item.value <= checkedNumber
+              ? currentLabel.classList.add("check")
+              : currentLabel.classList.remove("check");
+            // if (item.value <= checkedNumber) {
+            //   currentLabel.classList.add("check");
+            // } else {
+            //   currentLabel.classList.remove("check");
+            // }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
