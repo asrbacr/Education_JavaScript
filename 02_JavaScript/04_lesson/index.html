@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .form {
+      .rating {
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
       }
+
+      .rating_sing_label {
+        font-size: 50px;
+        color: gray;
+      }
+      .rating_sing_input {
+        display: none;
+      }
       .check {
-        color: yellow;
+        color: goldenrod;
       }
     </style>
     <script
       src="https://kit.fontawesome.com/a7ddde55e8.js"
       crossorigin="anonymous"
-      defer
     ></script>
   </head>
   <body>
@@ -87,14 +94,14 @@
       </div>
     </form>
     <script>
-      const buttonS = document.querySelector(".rating_sing_input");
       const form = document.querySelector(".form");
+      const buttonS = document.querySelectorAll(".rating_sing_input");
       const comment = document.querySelector(".rating_comment");
 
       buttonS.forEach((radio) => {
         radio.addEventListener("change", function (e) {
           const checkedNumber =
-            document.querySelector(".rating_sign_input:checked").value ||
+            document.querySelector(".rating_sing_input:checked").value ||
             undefined;
 
           buttonS.forEach((item) => {
