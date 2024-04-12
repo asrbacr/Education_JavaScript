@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form user</title>
+    <style>
+        .form {
+            width: 400px;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          margin-bottom: 30px;
+        }
+        .form__input {
+          padding: 2px;
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          margin-left: 20px;
+        }
+        .form__button {
+            padding: 5px;
+            width: 40%;
+        }
+      .page-server {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 5px;
+        text-decoration: none;
+        color: #0f0f0f;
+      }
+      .page-server:hover {
+        background-color: #ccc;
+      }
+    </style>
+    <script src="./scriptUser.js" defer></script>
+  </head>
+  <body>
+    <h1 class="header">Введите ваши данные</h1>
+    <form action="" method="post" class="form">
+        <label class="form__label">Введите ваше имя
+            <input type="text" class="form__name__input form__input">
+        </label>
+        <label class="form__label">Введите вашу почту
+            <input type="email" class="form__name__mail form__input">
+        </label>
+        <label class="form__label">Введите ваш город
+            <input type="text" class="form__name__city form__input">
+        </label>
+        <label class="form__label">Введите ваш возраст
+            <input type="number" class="form__name__age form__input">
+        </label>
+        <button type="button" class="form__button">Отправить данные</button>
+    </form>
+    <a href="./server.html" class="page-server"
+      >Проверить, что пришло на сервер</a
+    >
+  </body>
+</html>
