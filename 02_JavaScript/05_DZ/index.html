@@ -34,11 +34,11 @@
         background-color: #ccc;
       }
     </style>
-    <script src="./scriptUser.js" defer></script>
+    <!-- <script src="./scriptUser.js" defer></script> -->
   </head>
   <body>
     <h1 class="header">Введите ваши данные</h1>
-    <form action="" method="post" class="form">
+    <form enctype="multipart/form-data" method="post" class="form">
         <label class="form__label">Введите ваше имя
             <input type="text" class="form__name__input form__input">
         </label>
@@ -51,7 +51,7 @@
         <label class="form__label">Введите ваш возраст
             <input type="number" class="form__name__age form__input">
         </label>
-        <button type="button" class="form__button">Отправить данные</button>
+        <button type="submit" class="form__button">Отправить данные</button>
     </form>
     <a href="./server.html" class="page-server"
       >Проверить, что пришло на сервер</a
