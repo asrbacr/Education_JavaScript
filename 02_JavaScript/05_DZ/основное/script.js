@@ -25,8 +25,6 @@ fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
         const nameRate = document.createElement("p");
         nameRate.classList.add("name-description");
         elemEl.appendChild(nameRate);
-        nameRate.innerHTML = resultParse.bpi[key].rate_float;
+        nameRate.innerHTML = `1 BTC = ${resultParse.bpi[key].rate_float} $`;
     }
-
-
   });
