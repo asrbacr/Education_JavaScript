@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.play {
+    background-image: url('./icon/play-button-svgrepo-com.svg');
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+}
+
+.pause {
+    background-image: url('./icon/pause-button-svgrepo-com.svg');
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+}
