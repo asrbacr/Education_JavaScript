@@ -35,12 +35,9 @@ console.log(mirOfVar.displayInfo());
 // Свойство grade (класс) - строка, класс, в котором учится студент.
 // Метод displayInfo() - выводит информацию о студенте (имя, возраст и класс).
 
-/**
- * Студент
- */
 class Student {
     /**
-     * Констуктор студент
+     * Конструктор студент
      * @param {string} name - Имя
      * @param {integer} age - Возраст
      * @param {string} grade - Код класса
