@@ -126,4 +126,58 @@ console.log("----------------------");
 // Статическое поле:
 // * MAX_AGE: максимально допустимый возраст для всех создаваемых объектов (число).
 
+class ZooAnimal {
+  #name;
+  #age;
+  #gender;
+  static MAX_AGE = Infinity;
+  /**
+   * Класс животное. создаёт 1-ого животного
+   * @param {string} name - Название/Имя животного
+   * @param {integer} age - Возраст животного (это может быть только не отрицательное число)
+   * @param {string} gender - Пол животного
+   */
+  constructor(name, age, gender) {
+    this.#name = name;
+    if (typeof age === typeof ZooAnimal.MAX_AGE && age > 0) {
+      this.#age = age;
+    } else {
+      throw new Error("Возраст может быть только не отрицательное число");
+    }
+    this.#gender = gender;
+  }
+
+  /**
+   * Метод смены Названия/Имени
+   * @param {string} newName - Принимает новое Название/Имя животного
+   */
+  changeName(newName) {
+    this.#name = newName;
+  }
+
+  /**
+   * Метод смены Возраста
+   * @param {integer} newAge - Принимает новое значение возраста
+   */
+  changeAge(newAge) {
+    if (typeof newAge === typeof ZooAnimal.MAX_AGE && newAge > 0) {
+      this.#age = newAge;
+    } else {
+      throw new Error("Возраст может быть только не отрицательное число");
+    }
+  }
+
+  get Info() {
+    return `Объект: ${this.#name}, 
+Возраст: ${this.#age} год(а)/лет,
+Пол: ${this.#gender}.`;
+  }
+}
+
+const mouse = new ZooAnimal("Мышка Нарушка", 23, "девочка");
+// mouse.changeAge('0');
+// mouse.changeAge(0);
+mouse.changeAge(3);
+console.log(mouse.Info);
+
 // Ваша задача: реализовать класс ZooAnimal с указанными характеристиками. Убедитесь, что вы используете приватные поля и статическое поле в соответствии с описанием.
