@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./script.js" defer type="module"></script>
+    <style>
+      .catalog {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      figure {
+        border: thin #c0c0c0 solid;
+        display: flex;
+        flex-flow: column;
+        padding: 5px;
+        /* max-width: 220px; */
+        margin: auto;
+        min-height: 600px;
+        min-width: 360px;
+      }
+
+      img {
+        max-width: 360px;
+        max-height: 360px;
+        object-fit: cover;
+      }
+
+      figcaption {
+        background-color: #222;
+        color: #fff;
+        font: italic smaller sans-serif;
+        padding: 3px;
+        text-align: center;
+        max-width: 360px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="catalog"></div>
+  </body>
+</html>
