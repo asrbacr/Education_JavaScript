@@ -33,7 +33,7 @@ async function getUserDataAutoCod(id) {
 }
 
 console.log(getUserData(5));
-
+console.log("------------------------");
 // ""Отправка данных на сервер""
 
 // Реализуйте функцию saveUserData, которая принимает объект с данными о пользователе в качестве аргумента
@@ -42,20 +42,37 @@ console.log(getUserData(5));
 // или отклоняется в случае ошибки.
 
 // *Подсказка *
-// // Пример использования функции
-// const user = {
-// name: 'John Smith',
-// age: 30,
-// email: 'john@example.com'
-// };
 
-// saveUserData(user)
-// .then(() => {
-// console.log('User data saved successfully');
-// })
-// .catch(error => {
-// console.log(error.message);
-// });
+async function saveUserData(user) {
+  let response = await fetch("https://jsonplaceholder.typicode.com/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+  if (!response.ok) {
+    console.log(response.status);
+    throw new Error("Что-то пошло не так: " + response.status);
+  } else {
+    console.log(response.status);
+  }
+}
+
+// Пример использования функции
+const user = {
+  name: "John Smith",
+  age: 30,
+  email: "john@example.com",
+};
+
+saveUserData(user)
+  .then(() => {
+    console.log("User data saved successfully");
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
 
 // saveUserData использует fetch для отправки данных о пользователе на удаленный сервер для сохранения.
 // Она отправляет POST-запрос на URL-адрес /users с указанием типа содержимого application/json и
@@ -63,10 +80,33 @@ console.log(getUserData(5));
 // Если запрос успешен (с кодом 200), функция разрешает промис.
 // Если запрос неуспешен, функция отклоняет промис с сообщением об ошибке.
 
+console.log("------------------------");
 // ""Изменение стиля элемента через заданное время""
 
 // Напишите функцию changeStyleDelayed, которая принимает идентификатор элемента и время задержки
 // (в миллисекундах) в качестве аргументов. Функция должна изменить стиль элемента через указанное время.
+const btnEl = document.querySelector(".btn");
+btnEl.addEventListener("click", () => {
+  changeStyleDelayed("my-element", 1000);
+});
+function changeStyleDelayed(nameClass, time) {
+  const divEl = document.querySelector(`.${nameClass}`);
+  setTimeout(() => {
+    divEl.classList.toggle("colorBlue");
+  }, time);
+}
 
-// // Пример использования функции
-// changeStyleDelayed('myElement', 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
+// Пример использования функции
+changeStyleDelayed("myElement", 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
+
+console.log("------------------------");
+// Дополнительное задание
+// Задача 1:
+// Необходимо получить список всех пользователей с помощью бесплатного API
+// (https://jsonplaceholder.typicode.com/users) и отобразить их на странице.
+// Пользователь должен иметь возможность удалить любого пользователя из списка.
+
+console.log("------------------------");
+// Задача 2:
+// Необходимо реализовать отрисовку 10 картинок собак из
+// API https://dog.ceo/dog-api/ с интервалом в 3 секунды.
