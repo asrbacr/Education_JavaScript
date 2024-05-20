@@ -11,18 +11,28 @@
 // и возвращает объект с данными о пользователе.
 // Если запрос неуспешен, функция отклоняет промис с сообщением об ошибке.
 
-const xhr = new XMLHttpRequest();
-xhr.open("GET", "https://jsonplaceholder.typicode.com/users");
-xhr.send();
-xhr.onload = function (e) {
-    if (xhr.status != 200) {
-        console.log(`Error ${xhr.status}: ${xhr.statusText}`);
+url = "https://jsonplaceholder.typicode.com/users";
+
+function getUserData(id) {
+  return fetch(`${url}/${id}`).then((response) => {
+    if (response.status != 200) {
+      return new Error("Пользователь не найден");
     } else {
-        console.log(
-            this.response.json()
-        );
+      return response.json();
     }
+  });
 }
+
+async function getUserDataAutoCod(id) {
+  const response = await fetch(`${url}/${id}`);
+  if (response.status != 200) {
+    return new Error("Пользователь не найден");
+  } else {
+    return response.json();
+  }
+}
+
+console.log(getUserData(5));
 
 // ""Отправка данных на сервер""
 
