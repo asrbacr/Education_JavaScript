@@ -55,7 +55,7 @@ async function saveUserData(user) {
     console.log(response.status);
     throw new Error("Что-то пошло не так: " + response.status);
   } else {
-    console.log(response.status);
+    // console.log(response.status);
   }
 }
 
@@ -68,7 +68,7 @@ const user = {
 
 saveUserData(user)
   .then(() => {
-    console.log("User data saved successfully");
+    // console.log("User data saved successfully");
   })
   .catch((error) => {
     console.log(error.message);
@@ -97,7 +97,7 @@ function changeStyleDelayed(nameClass, time) {
 }
 
 // Пример использования функции
-changeStyleDelayed("myElement", 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
+// changeStyleDelayed("myElement", 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
 
 console.log("------------------------");
 // Дополнительное задание
@@ -105,6 +105,35 @@ console.log("------------------------");
 // Необходимо получить список всех пользователей с помощью бесплатного API
 // (https://jsonplaceholder.typicode.com/users) и отобразить их на странице.
 // Пользователь должен иметь возможность удалить любого пользователя из списка.
+
+
+async function getData(url) {
+  try {
+    // ожидание результат работы ф-ции
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const fetchData = await getData('https://jsonplaceholder.typicode.com/users');
+console.log(fetchData);
+
+const listUser = document.querySelector('div.users');
+fetchData.forEach((el) => {
+  listUser.insertAdjacentHTML("beforeend",
+  `
+  <div class="user-card">
+    <p class="username">username: <span class="username__span">${el.username}</span></p>
+    <p class="name title">Имя: <span class="name__span value">Chelsey Dietrich</span></p>
+    <p class="title">Адрес: <span class="value">33263, Roscoeview, Skiles Walks, Suite 351</span></p>
+    <p class="title">тел.: <span class="value">(254)954-1289</span></p>
+  </div>
+  `)
+});
+
 
 console.log("------------------------");
 // Задача 2:
