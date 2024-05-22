@@ -143,12 +143,13 @@ const urlDogs = "https://dog.ceo/api/breeds/image/random";
 const dogsEl = document.querySelector("div.dogs");
 for (let i = 0; i < 10; i++) {
   getData(urlDogs).then((data) => {
-    dogsEl.insertAdjacentHTML(
-      "beforeend",
-      `
-      <img src="${data.message}" class="dog-pic">
-      `
-    );
-    // console.log(data);
+    setTimeout(function timeout() {
+      dogsEl.insertAdjacentHTML(
+        "beforeend",
+        `
+        <img src="${data.message}" class="dog-pic">
+        `
+      );
+    }, i * 3000);
   });
 }
