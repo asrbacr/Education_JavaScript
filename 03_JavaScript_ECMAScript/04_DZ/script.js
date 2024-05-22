@@ -106,36 +106,49 @@ console.log("------------------------");
 // (https://jsonplaceholder.typicode.com/users) и отобразить их на странице.
 // Пользователь должен иметь возможность удалить любого пользователя из списка.
 
+const getData = (url) =>
+  new Promise((resolve, reject) => {
+    fetch(url).then((response) =>
+      response
+        .json()
+        .then((data) => resolve(data))
+        .catch((error) => reject(error))
+    );
+  });
 
-async function getData(url) {
-  try {
-    // ожидание результат работы ф-ции
-    const res = await fetch(url);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-const fetchData = await getData('https://jsonplaceholder.typicode.com/users');
-console.log(fetchData);
-
-const listUser = document.querySelector('div.users');
-fetchData.forEach((el) => {
-  listUser.insertAdjacentHTML("beforeend",
-  `
-  <div class="user-card">
-    <p class="username">username: <span class="username__span">${el.username}</span></p>
-    <p class="name title">Имя: <span class="name__span value">Chelsey Dietrich</span></p>
-    <p class="title">Адрес: <span class="value">33263, Roscoeview, Skiles Walks, Suite 351</span></p>
-    <p class="title">тел.: <span class="value">(254)954-1289</span></p>
-  </div>
-  `)
-});
-
+const listUser = document.querySelector("div.users");
+getData(url)
+  .then((data) => {
+    data.forEach((el) => {
+      listUser.insertAdjacentHTML(
+        "beforeend",
+        `
+      <div class="user-card">
+        <p class="username">username: <br><span class="username__span">${el.username}</span></p>
+        <p class="name title">Имя: <span class="name__span value">${el.name}</span></p>
+        <p class="title">Адрес: <span class="value">${el.address.zipcode}, ${el.address.city}, ${el.address.street}, ${el.address.suite}</span></p>
+        <p class="title">тел.: <span class="value">${el.phone}</span></p>
+      </div>
+      `
+      );
+    });
+  })
+  .catch((error) => console.log(error.message));
 
 console.log("------------------------");
 // Задача 2:
 // Необходимо реализовать отрисовку 10 картинок собак из
 // API https://dog.ceo/dog-api/ с интервалом в 3 секунды.
+const urlDogs = "https://dog.ceo/api/breeds/image/random";
+const dogsEl = document.querySelector("div.dogs");
+for (let i = 0; i < 10; i++) {
+  getData(urlDogs).then((data) => {
+    dogsEl.insertAdjacentHTML(
+      "beforeend",
+      `
+      <img src="${data.message}" class="dog-pic">
+      `
+    );
+    // console.log(data);
+  });
+}
