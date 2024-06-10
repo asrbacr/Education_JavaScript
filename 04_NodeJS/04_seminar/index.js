@@ -1,18 +1,25 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-const Joi = require('joi');
+const Joi = require("joi");
+const uuid = require("uuid");
 const app = express();
 const port = 3000;
 const pathFile = path.join(__dirname, "users.json");
-let uniqID = 3;
+// let uniqID = 3;
+
+const generateID = () => {
+  let uniqID = uuid.v1();
+  let tempArray = uniqID.split("-");
+  return tempArray.join("");
+};
 
 const userSchema = Joi.object({
   name: Joi.string().min(2).required(),
   surname: Joi.string().min(2).required(),
   age: Joi.number().min(0).required(),
   city: Joi.string(),
-})
+});
 
 app.use(express.json());
 
@@ -25,7 +32,7 @@ app.get("/users", (req, res) => {
 // request.params (через /:[параметр]), request.query (строка парсится автоматически)
 app.get("/users/:id", (req, res) => {
   const users = JSON.parse(fs.readFileSync(pathFile));
-  const user = users.find((item) => item.id === +req.params.id);
+  const user = users.find((item) => item.id === req.params.id);
   if (user) {
     res.send({ user });
   } else {
@@ -40,11 +47,11 @@ app.get("/users/:id", (req, res) => {
 app.put("/users/:id", (req, res) => {
   const resultValidation = userSchema.validate(req.body);
   if (resultValidation.error) {
-    return res.status(400).send({error: resultValidation.error.details});
+    return res.status(400).send({ error: resultValidation.error.details });
   }
 
   const users = JSON.parse(fs.readFileSync(pathFile));
-  const user = users.find((item) => item.id === +req.params.id);
+  const user = users.find((item) => item.id === req.params.id);
   if (user) {
     user.name = req.body.name;
     user.surname = req.body.surname;
@@ -64,12 +71,12 @@ app.put("/users/:id", (req, res) => {
 app.post("/users", (req, res) => {
   const resultValidation = userSchema.validate(req.body);
   if (resultValidation.error) {
-    return res.status(400).send({error: resultValidation.error.details});
+    return res.status(400).send({ error: resultValidation.error.details });
   }
 
   const users = JSON.parse(fs.readFileSync(pathFile));
   const user = {
-    id: uniqID++,
+    id: generateID(),
     name: req.body.name,
     surname: req.body.surname,
     age: req.body.age,
@@ -82,11 +89,11 @@ app.post("/users", (req, res) => {
 
 app.delete("/users/:id", (req, res) => {
   const users = JSON.parse(fs.readFileSync(pathFile));
-  const userIndex = users.findIndex((item) => item.id === +req.params.id);
+  const userIndex = users.findIndex((item) => item.id === req.params.id);
   if (userIndex > -1) {
     users.splice(userIndex, 1);
     fs.writeFileSync(pathFile, JSON.stringify(users, null, 3));
-    res.send({ status: 'Пользователь удалён'});
+    res.send({ status: "Пользователь удалён" });
   } else {
     res
       .status(404)
