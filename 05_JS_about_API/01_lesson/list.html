@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Список дел</title>
+    <style>
+        .body {
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .delete-button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;                
+            padding: 5px 10px;
+        }
+
+        .div-li {
+            display: flex;
+            justify-content: space-between;
+            gap: 100px;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .task-item {
+            list-style: none;
+        }
+    </style>
+  </head>
+  <body class="body">
+    <h1 class="h1">Список дел</h1>
+    <div class="div-input">
+        <input type="text" class="task-input" placeholder="Добавить задачу" />
+        <button class="add-button">Добавить</button>
+    </div>
+    <ul class="task-list"></ul>
+
+    <script>
+      const taskInput = document.querySelector(".task-input");
+      const addButton = document.querySelector(".add-button");
+      const taskList = document.querySelector(".task-list");
+
+      if (localStorage.getItem("tasks")) {
+        taskList.innerHTML = localStorage.getItem("tasks");
+      }
+
+      addButton.addEventListener("click", function (e) {
+        const taskDescription = taskInput.value;
+        if (taskDescription !== "") {
+          const listItem = document.createElement("li");
+          listItem.classList.add("task-item");
+          listItem.innerHTML = `
+                <div class="div-li">
+                    <span class="task-description">${taskDescription}</span>
+                    <button class="delete-button">Удалить</button>            
+                </div>
+                `;
+          taskList.append(listItem);
+
+          taskInput.value = "";
+
+          // Сохранение списка дел в локальное хранилище
+          localStorage.setItem("tasks", taskList.innerHTML);
+        }
+      });
+
+      taskList.addEventListener("click", function (e) {
+        if (e.target.classList.contains("delete-button")) {
+          const listItem = e.target.closest("li");
+          listItem.parentNode.removeChild(listItem);
+
+          // Обновление списка дел в локальном хранилище
+          localStorage.setItem("tasks", taskList.innerHTML);
+        }
+      });
+    </script>
+  </body>
+</html>
