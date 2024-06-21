@@ -6,7 +6,6 @@ const uuid = require("uuid");
 const app = express();
 const port = 3000;
 const pathFile = path.join(__dirname, "users.json");
-// let uniqID = 3;
 
 const generateID = () => {
   let uniqID = uuid.v1();
