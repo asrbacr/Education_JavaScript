@@ -198,7 +198,7 @@ containerArticleEl.addEventListener("click", (e) => {
 function createArticleHTML(article) {
   return `
         <div class="article" date-id="${article.id}">
-            <div class="title">${article.title}</d>
+            <div class="title">${article.title}</div>
             <div class="text">${article.text}</div>
             <button class="removeArticle">Удалить</button>
             <button class="updateArticle">Редактировать</button>
