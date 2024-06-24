@@ -177,28 +177,8 @@ addNewArticleEl.addEventListener("click", () => {
   );
 });
 
-// const updateArticleEl = document.querySelector('.updateArticle')
- 
-// containerArticleEl.addEventListener("click", (event) => {
-//   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//   if (!event.target.classList.contains("updateArticle")) {
-//     return;
-//   }
-//   const articleEl = event.target.closest(".article");
-//   const article = articles.find(
-//     (article) => article.id === +articleEl.getAttribute("data-id")
-//   );
- 
-//   article.title = prompt("Введите заголовок");
-//   article.text = prompt("Введите текст");
- 
-//   //--------------запись в local storage-----------------------------
-//   localStorage.setItem(key, JSON.stringify(articles));
-//   articleEl.querySelector(".title").innerHTML = article.title;
-//   articleEl.querySelector(".text").innerHTML = article.text;
-// });
-const updateArticleEl = document.querySelector(".updateArticle");
-containerArticleEl.addEventListener("click", function (e) {
+// const updateArticleEl = document.querySelector(".updateArticle");
+containerArticleEl.addEventListener("click", (e) => {
   if (!e.target.classList.contains("updateArticle")) {
     return;
   }
@@ -210,9 +190,9 @@ containerArticleEl.addEventListener("click", function (e) {
   article.title = prompt("Введите заголовок");
   article.text = prompt("Введите текст");
 
-  localStorage.setItem(key, JSON.stringify(articles));
   articleEl.querySelector(".title").innerHTML = article.title;
   articleEl.querySelector(".text").innerHTML = article.text;
+  localStorage.setItem(key, JSON.stringify(articles));
 });
 
 function createArticleHTML(article) {
