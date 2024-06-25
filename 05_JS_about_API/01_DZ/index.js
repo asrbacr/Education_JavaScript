@@ -14,7 +14,7 @@ const data = `[
     "name": "Пилатес",
     "time": "11:30 - 12:30",
     "maxParticipants": 10,
-    "currentParticipants": 5
+    "currentParticipants": 10
   },
   {
     "id": 3,
@@ -28,7 +28,7 @@ const data = `[
     "name": "Танцы",
     "time": "14:30 - 15:30",
     "maxParticipants": 12,
-    "currentParticipants": 12
+    "currentParticipants": 10
   },
   {
     "id": 5,
@@ -66,7 +66,7 @@ function createTrainingHTML(training) {
         </div>
       </div>
       <div class="button">
-        <button class="training__remove">Отменить запись</button>
+        <button class="training__remove training__block">Отменить запись</button>
         <button class="training__enrol">Записаться</button>
       </div>
     </div>`;
@@ -99,6 +99,23 @@ function isMaxPeopleTraining(training) {
 
 // Кнопка "отменить запись" активна в случае,
 // если пользователь записан на занятие, иначе она должна быть неактивна.
+
+function isUserCurrentTraining(training) {
+  const buttonEls = document.querySelectorAll("button.training__enrol");
+
+  buttonEls.forEach((element) => {
+    const parentEl = element.closest(".training");
+    const maxParticipantsEl =
+      +parentEl.querySelector(".count-people__max").textContent;
+    const currentParticipantsEl = +parentEl.querySelector(
+      ".count-people__current"
+    ).textContent;
+
+    if (currentParticipantsEl >= maxParticipantsEl) {
+      element.classList.add("training__block");
+    }
+  });
+}
 
 // Пользователь может записаться на один курс только один раз.
 
