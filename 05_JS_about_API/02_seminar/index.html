@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>События, формы</title>
+    <script src="./index.js" defer></script>
+    <style>
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        background-color: #333;
+      }
+
+      nav ul li {
+        margin: 0;
+        padding: 0;
+      }
+
+      nav ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      nav ul li a:hover {
+        background-color: #555;
+      }
+
+      nav ul li a.active {
+        background-color: #f00;
+      }
+      /* Задание 2 */
+      .modal-windows {
+        width: 300px;
+        height: 200px;
+        background-color: #f0f0f0;
+        display: none;
+      }
+      /* Задание 4 */
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .question {
+        margin-bottom: 20px;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .result {
+        font-weight: bold;
+      }
+
+      .red-border {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Задание 1 -->
+    <!-- <nav>
+      <ul class="menu">
+        <li><a class="menu__link" href="#">Главная</a></li>
+        <li><a class="menu__link" href="#">О нас</a></li>
+        <li><a class="menu__link" href="#">Услуги</a></li>
+        <li><a class="menu__link" href="#">Контакты</a></li>
+      </ul>
+    </nav> -->
+    <!-- Задание 2 -->
+    <!-- <button class="open-modal-button">Открыть модальное окно</button>
+    
+    <div class="modal-windows">
+      <h2>Модальное окно</h2>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum ipsum
+        harum ut.
+      </p>
+    </div> -->
+    <!-- Задание 3 -->
+    <!-- <button class="buy-button">Купить</button> -->
+    <!-- Задание 4 -->
+    <div class="question">
+      <p>Вопрос 1: Какой ваш любимый цвет?</p>
+      <div class="options">
+        <label> <input type="radio" name="q1" value="Синий" /> Синий </label>
+        <label>
+          <input type="radio" name="q1" value="Зеленый" /> Зеленый
+        </label>
+        <label>
+          <input type="radio" name="q1" value="Красный" /> Красный
+        </label>
+      </div>
+    </div>
+    <div class="question">
+      <p>Вопрос 3: Какой ваш любимый цвет?</p>
+      <div class="options">
+        <label> <input type="radio" name="q3" value="Синий" /> Синий </label>
+        <label>
+          <input type="radio" name="q3" value="Зеленый" /> Зеленый
+        </label>
+        <label>
+          <input type="radio" name="q3" value="Красный" /> Красный
+        </label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>Вопрос 2: Какое ваше любимое животное?</p>
+      <div class="options">
+        <label> <input type="radio" name="q2" value="Собака" /> Собака </label>
+        <label> <input type="radio" name="q2" value="Кот" /> Кот </label>
+        <label>
+          <input type="radio" name="q2" value="Попугай" /> Попугай
+        </label>
+      </div>
+    </div>
+
+    <button id="submit">Завершить опрос</button>
+
+    <div class="result" style="display: none">
+      <p>Результаты:</p>
+      <p class="result-list"></p>
+    </div>
+  </body>
+</html>
