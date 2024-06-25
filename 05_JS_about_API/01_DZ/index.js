@@ -28,7 +28,7 @@ const data = `[
     "name": "Танцы",
     "time": "14:30 - 15:30",
     "maxParticipants": 12,
-    "currentParticipants": 10
+    "currentParticipants": 12
   },
   {
     "id": 5,
@@ -79,6 +79,24 @@ dataArray.forEach((elem) => {
 // Если максимальное количество участников достигнуто,
 // либо пользователь уже записан на занятие,
 // сделайте кнопку "записаться" неактивной.
+
+isMaxPeopleTraining(dataArray);
+function isMaxPeopleTraining(training) {
+  const buttonEls = document.querySelectorAll("button.training__enrol");
+  buttonEls.forEach((element) => {
+    const parentEl = element.closest(".training");
+    const maxParticipantsEl =
+      +parentEl.querySelector(".count-people__max").textContent;
+    const currentParticipantsEl = +parentEl.querySelector(
+      ".count-people__current"
+    ).textContent;
+
+    if (currentParticipantsEl >= maxParticipantsEl) {
+      element.classList.add("training__block");
+    }
+  });
+}
+
 // Кнопка "отменить запись" активна в случае,
 // если пользователь записан на занятие, иначе она должна быть неактивна.
 
