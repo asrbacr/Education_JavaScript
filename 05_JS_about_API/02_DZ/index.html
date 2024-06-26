@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Слайдер</title>
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <style>
+      .content {
+        position: relative;
+      }
+      .border-image {
+        width: 100%;
+        height: 500px;
+        background-color: #e65d5d;
+        /* visibility: hidden; */
+      }
+
+      .arrow {
+        border-top: 1px solid #000;
+        width: 10px;
+        box-sizing: border-box;
+      }
+      .arrow-left {
+        position: absolute;
+        rotate: 45deg;
+        top: 50%;
+        left: 0;
+        width: 20px;
+        height: 20px;
+    }
+    .arrow-right {
+        position: absolute;
+        rotate: -45deg;
+        top: 50%;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="border-image"></div>
+      <div class="fa-regular fa-chevron-up arrow-left"></div>
+      <div class="arrow arrow-right"></div>
+    </div>
+  </body>
+</html>
