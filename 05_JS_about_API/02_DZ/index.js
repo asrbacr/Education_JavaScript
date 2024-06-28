@@ -38,17 +38,29 @@ console.log(arrayImageCats);
 
 const arrayTampHTML = [];
 arrayImageCats.forEach((elem) => {
-  let elemPush = `<img class="image image__none" src="${elem.src}" alt="${elem.alt}"/>`;
+  let elemPush = `<img id="image-cat-${elem.id}" class="image image__none" src="${elem.src}" alt="${elem.alt}"/>`;
   if (elem.id === 1) {
-    elemPush = `<img class="image image__active" src="${elem.src}" alt="${elem.alt}"/>`;
+    elemPush = `<img id="image-cat-${elem.id}" class="image image__active" src="${elem.src}" alt="${elem.alt}"/>`;
   }
   arrayTampHTML.push(elemPush);
 });
 // console.log(arrayTampHTML);
 borderList.insertAdjacentHTML("beforeend", arrayTampHTML.join(""));
+console.log(arrayTampHTML);
 
-arrowRight.addEventListener('click', function (e) {
-    
+arrowRight.addEventListener("click", function (e) {
+  const imageActiveEl = document.querySelector(".image__active");
+  const imageActiveIndexEl = parseInt(
+    document.querySelector(".image__active").id.match(/\d+/)
+  );
+  const imageNextIdEl = `image-cat-${imageActiveIndexEl + 1}`;
+  const imageNextEl = document.querySelector(`#${imageNextIdEl}`);
+  const imageEnterId = document.querySelector(".image__active").id;
+  
+  imageActiveEl.classList.remove('image__active');
+  imageActiveEl.classList.add('image__none');
+  imageNextEl.classList.remove('image__none');
+  imageNextEl.classList.add('image__active');
 });
 
 // При клике на кнопку "Предыдущее изображение"
