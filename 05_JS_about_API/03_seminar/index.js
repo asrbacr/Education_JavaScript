@@ -106,15 +106,15 @@ categorySelectEl.addEventListener("change", () => {
 }); */
 
 // Задача 2.
- 
+
 // Бесконечная лента фотографий
-// Для создания бесконечной ленты с фотографиями с использованием 
+// Для создания бесконечной ленты с фотографиями с использованием
 // Unsplash API, выполните следующие шаги:
 // 1. Зарегистрируйтесь на Unsplash:
 // ○ Перейдите на веб-сайт Unsplash (https://unsplash.com/).
 // ○ Нажмите кнопку "Join" или "Регистрация", чтобы создать аккаунт, если у вас его еще нет.
 // ○ Войдите в свой аккаунт Unsplash.
- 
+
 // 2. Создайте приложение:
 // ○ После входа в аккаунт Unsplash, перейдите на страницу разработчика Unsplash
 // (https://unsplash.com/developers).
@@ -123,7 +123,7 @@ categorySelectEl.addEventListener("change", () => {
 // ○ Заполните информацию о вашем приложении, такую как имя, описание и сайт (вы можете
 // использовать http://localhost для тестового сайта).
 // ○ После заполнения информации, нажмите "Create Application" (Создать приложение).
- 
+
 // 3. Получите API-ключ:
 // ○ После создания приложения, вы получите API-ключ. Этот ключ будет
 // отображаться в вашей панели управления приложением.
@@ -134,8 +134,58 @@ categorySelectEl.addEventListener("change", () => {
 // интегрированной среде разработки.
 // ○ Замените 'YOUR_ACCESS_KEY' в коде JavaScript на ваш собственный
 // API-ключ.
- 
+
 // 5. Реализуйте загрузку фотографий при открытии страницы.
- 
+
 // 6. Реализуйте бесконечную подгрузку фотографий при прокручивании страницы.
- 
+
+const ApplicationID = 633735;
+const AccessKey = "uGMHuoOpJPe-BjPUzZjirvGSO8GOJWX-gkY8Xj6Cpdc";
+const SecretKey = "Rg_LoE-RJQByZimyznByAoC2cJaRhxxidDdjx6wftHg";
+const containerEl = document.querySelector("#photo-container");
+let countPage = 1;
+document.addEventListener("DOMContentLoader", Main());
+document.addEventListener("scroll", async function (e) {
+  console.log(document.documentElement.scrollTop);
+  console.log(document.documentElement.clientHeight - 100);
+
+  if (
+    document.documentElement.clientHeight >=
+    document.documentElement.clientHeight - 100
+  ) {
+      countPage++;
+      await fetchPhotoList(countPage);
+      let imgsHTML = ``;
+      const data = await fetchPhotoList(countPage);
+      data.forEach((elem) => {
+        imgsHTML += createImg(elem);
+      });
+      containerEl.insertAdjacentHTML("beforeend", imgsHTML);
+  }
+});
+
+async function fetchPhotoList(page) {
+  const response = await fetch(`https://api.unsplash.com/photos?page=${page}`, {
+    headers: { Authorization: `Client-ID ${AccessKey}` },
+  });
+  if (!response.ok) {
+    throw new Error(`Сервер ответил статусом ${response.status}`);
+  }
+  return await response.json();
+}
+
+async function Main() {
+  let imgsHTML = ``;
+  const data = await fetchPhotoList(countPage);
+  data.forEach((elem) => {
+    imgsHTML += createImg(elem);
+  });
+  containerEl.innerHTML = imgsHTML;
+}
+
+function createImg(objInfo) {
+  return `
+    <div class="photo">
+          <img src="${objInfo.urls.small}" alt="${objInfo.alt_description}">
+      </div>`;
+}
