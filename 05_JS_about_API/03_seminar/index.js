@@ -144,34 +144,42 @@ const AccessKey = "uGMHuoOpJPe-BjPUzZjirvGSO8GOJWX-gkY8Xj6Cpdc";
 const SecretKey = "Rg_LoE-RJQByZimyznByAoC2cJaRhxxidDdjx6wftHg";
 const containerEl = document.querySelector("#photo-container");
 let countPage = 1;
+let isFetching = false;
 document.addEventListener("DOMContentLoader", Main());
 document.addEventListener("scroll", async function (e) {
   console.log(document.documentElement.scrollTop);
   console.log(document.documentElement.clientHeight - 100);
 
-  if (
-    document.documentElement.clientHeight >=
-    document.documentElement.clientHeight - 100
-  ) {
-      countPage++;
-      await fetchPhotoList(countPage);
-      let imgsHTML = ``;
-      const data = await fetchPhotoList(countPage);
-      data.forEach((elem) => {
-        imgsHTML += createImg(elem);
-      });
-      containerEl.insertAdjacentHTML("beforeend", imgsHTML);
+  const page = document.documentElement;
+
+  if (page.scrollTop + page.clientHeight >= page.scrollHeight - 100) {
+    countPage++;
+    await fetchPhotoList(countPage);
+    let imgsHTML = ``;
+    const data = await fetchPhotoList(countPage);
+    data.forEach((elem) => {
+      imgsHTML += createImg(elem);
+    });
+    containerEl.insertAdjacentHTML("beforeend", imgsHTML);
   }
 });
 
 async function fetchPhotoList(page) {
-  const response = await fetch(`https://api.unsplash.com/photos?page=${page}`, {
-    headers: { Authorization: `Client-ID ${AccessKey}` },
-  });
-  if (!response.ok) {
-    throw new Error(`Сервер ответил статусом ${response.status}`);
+  try {
+    isFetching = true;
+    const response = await fetch(
+      `https://api.unsplash.com/photos?page=${page}`,
+      {
+        headers: { Authorization: `Client-ID ${AccessKey}` },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Сервер ответил статусом ${response.status}`);
+    }
+    return await response.json();
+  } finally {
+    isFetching = false;
   }
-  return await response.json();
 }
 
 async function Main() {
