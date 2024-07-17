@@ -147,16 +147,19 @@ let countPage = 1;
 let isFetching = false;
 document.addEventListener("DOMContentLoader", Main());
 document.addEventListener("scroll", async function (e) {
-  console.log(document.documentElement.scrollTop);
-  console.log(document.documentElement.clientHeight - 100);
+  // console.log(document.documentElement.scrollTop);
+  // console.log(document.documentElement.clientHeight);
 
   const page = document.documentElement;
 
-  if (page.scrollTop + page.clientHeight >= page.scrollHeight - 100) {
+  if (
+    page.scrollTop + page.clientHeight >= page.scrollHeight - 100 &&
+    !isFetching
+  ) {
     countPage++;
     await fetchPhotoList(countPage);
-    let imgsHTML = ``;
     const data = await fetchPhotoList(countPage);
+    let imgsHTML = ``;
     data.forEach((elem) => {
       imgsHTML += createImg(elem);
     });
