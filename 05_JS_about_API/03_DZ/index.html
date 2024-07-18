@@ -4,11 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>03 семинар. Формы и запросы</title>
+    <link
+      href="https://unpkg.com/css.gg@2.0.0/icons/css/heart.css"
+      rel="stylesheet"
+    />
+
     <script src="./index.js" defer></script>
     <style>
+      * {
+        margin: 5px;
+        padding: 0;
+      }
       #photo-container {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
       }
 
       .photo {
@@ -17,15 +26,89 @@
         border: 1px solid #ccc;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
         overflow: hidden;
+        max-width: 500px;
+        max-height: 1000px;
       }
 
       .photo img {
         width: 100%;
         height: auto;
       }
+
+      .like {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .like__logo {
+        cursor: pointer;
+      }
+
+      .gg-heart,
+      .gg-heart::after {
+        border: 2px solid;
+        border-top-left-radius: 100px;
+        border-top-right-radius: 100px;
+        width: 10px;
+        height: 8px;
+        border-bottom: 0;
+      }
+
+      .gg-heart {
+        box-sizing: border-box;
+        position: relative;
+        transform: translate(
+            calc(-10px / 2 * var(--ggs, 1)),
+            calc(-6px / 2 * var(--ggs, 1))
+          )
+          rotate(-45deg) scale(var(--ggs, 1));
+        display: block;
+      }
+
+      .gg-heart::after,
+      .gg-heart::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+      }
+
+      .gg-heart::after {
+        right: -9px;
+        transform: rotate(90deg);
+        top: 5px;
+      }
+
+      .gg-heart::before {
+        width: 11px;
+        height: 11px;
+        border-left: 2px solid;
+        border-bottom: 2px solid;
+        left: -2px;
+        top: 3px;
+      }
+
+      .gg-heart:hover {
+        color: black;
+      }
     </style>
   </head>
   <body>
-    <div id="photo-container"></div>
+    <div id="photo-container">
+      <!-- <div class="wrapper">
+        <p class="photo__author">Василий Пупкин</p>
+        <div class="like">
+          <div class="like__logo gg-heart"></div>
+          <p class="like__count">4</p>
+        </div>
+        <div class="photo">
+          <img
+            src="https://funik.ru/wp-content/uploads/2018/10/17478da42271207e1d86.jpg"
+            alt="котик"
+          />
+        </div>
+      </div> -->
+    </div>
   </body>
 </html>

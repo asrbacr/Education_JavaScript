@@ -157,8 +157,8 @@ document.addEventListener("scroll", async function (e) {
     !isFetching
   ) {
     countPage++;
-    await fetchPhotoList(countPage);
-    const data = await fetchPhotoList(countPage);
+    await fetchPhotoRandom(countPage);
+    const data = await fetchPhotoRandom(countPage);
     let imgsHTML = ``;
     data.forEach((elem) => {
       imgsHTML += createImg(elem);
@@ -167,7 +167,7 @@ document.addEventListener("scroll", async function (e) {
   }
 });
 
-async function fetchPhotoList(page) {
+async function fetchPhotoRandom(page) {
   try {
     isFetching = true;
     const response = await fetch(
@@ -187,7 +187,7 @@ async function fetchPhotoList(page) {
 
 async function Main() {
   let imgsHTML = ``;
-  const data = await fetchPhotoList(countPage);
+  const data = await fetchPhotoRandom(countPage);
   data.forEach((elem) => {
     imgsHTML += createImg(elem);
   });
