@@ -28,7 +28,7 @@
 // изображение из Unsplash каждый раз, когда пользователь загружает страницу.
 // Обратите внимание, что должно подгружаться всегда случайное изображение,
 // для этого есть отдельная ручка (эндпоинт) у API.
-// const AccessKey = "uGMHuoOpJPe-BjPUzZjirvGSO8GOJWX-gkY8Xj6Cpdc";
+const AccessKey = "uGMHuoOpJPe-BjPUzZjirvGSO8GOJWX-gkY8Xj6Cpdc";
 const photoContainerEl = document.querySelector("#photo-container");
 let isFetching = false;
 
@@ -55,6 +55,7 @@ async function Main() {
   console.log(data);
   imgsHTML = createImg(data);
   photoContainerEl.innerHTML = imgsHTML;
+  searchLike();
 }
 
 function createImg(objInfo) {
@@ -62,7 +63,7 @@ function createImg(objInfo) {
     <div class="wrapper">
         <p class="photo__author">${objInfo.user.name}</p>
         <div class="like">
-          <div class="like__logo gg-heart"></div>
+          <div class="like__logo fa-regular fa-heart"></div>
           <p class="like__count">${objInfo.likes}</p>
         </div>
         <div class="photo">
@@ -72,6 +73,18 @@ function createImg(objInfo) {
           />
         </div>
     </div>`;
+}
+
+// fa-solid
+function searchLike() {
+  const heartEl = document.querySelector(".fa-heart");
+  // console.log(likeEl);
+
+  heartEl.addEventListener("click", function (e) {
+    heartEl.classList.remove("fa-regular");
+    heartEl.classList.add("fa-solid");
+    // const heartEl.closest()
+  });
 }
 
 // • Отобразите информацию о фотографе под изображением.
