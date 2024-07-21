@@ -52,7 +52,7 @@ async function fetchPhotoRandom() {
 async function Main() {
   let imgsHTML = ``;
   const data = await fetchPhotoRandom();
-  console.log(data);
+  //   console.log(data);
   imgsHTML = createImg(data);
   photoContainerEl.innerHTML = imgsHTML;
   searchLike();
@@ -75,23 +75,42 @@ function createImg(objInfo) {
     </div>`;
 }
 
-// fa-solid
-function searchLike() {
-  const heartEl = document.querySelector(".fa-heart");
-  // console.log(likeEl);
-
-  heartEl.addEventListener("click", function (e) {
-    heartEl.classList.remove("fa-regular");
-    heartEl.classList.add("fa-solid");
-    // const heartEl.closest()
-  });
-}
-
 // • Отобразите информацию о фотографе под изображением.
 // • Реализуйте функционал "лайка". Каждый раз, когда пользователь нажимает
 // кнопку "лайк", счетчик должен увеличиваться на единицу. Одну фотографию
 // пользователь может лайкнуть только один раз. Также должна быть возможность
 // снять лайк, если ему разонравилась картинка.
+
+// fa-solid
+function searchLike() {
+  let isSwitch = false;
+  const heartEl = document.querySelector(".fa-heart");
+  heartEl.addEventListener("click", function (e) {
+    const likeEl = heartEl.closest(".like");
+    const likeCountEl = likeEl.querySelector(".like__count");
+    const likeCountElText = Number(likeCountEl.textContent);
+
+    if (!isSwitch) {
+      heartEl.classList.remove("fa-regular");
+      heartEl.classList.add("fa-solid");
+      likeCountEl.remove();
+      likeEl.insertAdjacentHTML(
+        "beforeend",
+        `<p class="like__count">${likeCountElText + 1}</p>`
+      );
+      isSwitch = true;
+    } else {
+      heartEl.classList.remove("fa-solid");
+      heartEl.classList.add("fa-regular");
+      likeCountEl.remove();
+      likeEl.insertAdjacentHTML(
+        "beforeend",
+        `<p class="like__count">${likeCountElText - 1}</p>`
+      );
+      isSwitch = false;
+    }
+  });
+}
 // • Добавьте функцию сохранения количества лайков в локальное хранилище,
 // чтобы при новой загрузке страницы счетчик не сбрасывался, если будет
 // показана та же самая картинка.
