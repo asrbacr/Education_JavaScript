@@ -62,7 +62,7 @@ function createImg(objInfo) {
   return `
     <div class="wrapper">
         <p class="photo__author">${objInfo.user.name}</p>
-        <div class="like">
+        <div class="like" id="${objInfo.id}">
           <div class="like__logo fa-regular fa-heart"></div>
           <p class="like__count">${objInfo.likes}</p>
         </div>
@@ -98,6 +98,7 @@ function searchLike() {
         "beforeend",
         `<p class="like__count">${likeCountElText + 1}</p>`
       );
+      savePhotoLocalstorage(likeEl);
       isSwitch = true;
     } else {
       heartEl.classList.remove("fa-solid");
@@ -114,6 +115,13 @@ function searchLike() {
 // • Добавьте функцию сохранения количества лайков в локальное хранилище,
 // чтобы при новой загрузке страницы счетчик не сбрасывался, если будет
 // показана та же самая картинка.
+function savePhotoLocalstorage(elem) {
+  const idEl = elem.querySelector("#id");
+  console.log(idEl);
+  // return localStorage.setItem(idEl, )
+
+
+}
 // • Реализуйте возможность просмотра предыдущих фото с сохранением их
 // в истории просмотров в localstorage.
 // • Реализовать все с помощью async/await, без цепочем then.
