@@ -34,22 +34,21 @@ class Client {
 }
 
 const menu = [
-  { "Маргарита", "Пицца" },
-  { "Пепперони", "Пицца" },
-  { "Три сыра", "Пицца" },
-  { "Филадельфия", "Суши" },
-  { "Калифорния", "Суши" },
-  { "Чизмаки", "Суши" },
-  { "Сеякемаки", "Суши" },
-  { "Тирамису", "Десерт" },
-  { "Чизкейк", "Десерт" },
+  { name: "Маргарита", type: "Пицца" },
+  { name: "Пепперони", type: "Пицца" },
+  { name: "Три сыра", type: "Пицца" },
+  { name: "Филадельфия", type: "Суши" },
+  { name: "Калифорния", type: "Суши" },
+  { name: "Чизмаки", type: "Суши" },
+  { name: "Сеякемаки", type: "Суши" },
+  { name: "Тирамису", type: "Десерт" },
+  { name: "Чизкейк", type: "Десерт" },
 ];
 
-// Вам необходимо реализовать класс, который управляет заказами и поварами 
+// Вам необходимо реализовать класс, который управляет заказами и поварами. Список с типом описан в menu
 // Десерт "Трубочка с вареной сгущенкой" - такого блюда не существует.
 // Ничего не должно быть добавлено, должна быть выброшена ошибка:
-class Manager {}
-/* class Manager {
+class Manager {
   constructor() {
     this.povar = new Map();
     this.povar.set("Пицца", "Олег");
@@ -57,14 +56,23 @@ class Manager {}
     this.povar.set("Десерт", "Анна");
   }
 
+  // вызов метода должен дополняться, а значения увеличиваться. Нужно проверить соответствие name newOrder client с name menu, при false не учитывать весь заказ.
+  // при новом заказе, 
   newOrder(client, ...orders) {
     console.log(`Клиент ${client.firstname} заказал:`);
     orders.forEach((order) => {
-      const povar = this.povar.get(order.type);
-      console.log(`${order.type} "${order.name}" - ${order.quantity}; готовит повар ${povar}`);
+      const item = menu.find((item) => item.name === order.name);
+      if (item) {
+        console.log(
+          `${item.type} "${order.name}" - ${order.quantity}; готовит повар ${
+            this.povar.get(item.type)
+          }`
+        );
+      }
     });
   }
-} */
+}
+// }
 
 // Можно передать внутрь конструктора что-либо, если необходимо.
 const manager = new Manager();
