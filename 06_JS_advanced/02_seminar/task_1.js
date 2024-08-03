@@ -17,7 +17,7 @@
 не может превышать текущий баланс аккаунта в противном случае выбрасывайте 
 соответствующую ошибку.
 */
-class BankAccount {
+/* class BankAccount {
   #balance = 0;
 
   get balance() {
@@ -40,11 +40,47 @@ class BankAccount {
     }
     this.#balance -= amount;
   }
+} */
+
+class BankAccount {
+  #balance = 0;
+
+  getBalance() {
+    return Math.round(this.#balance * 100) / 100;
+  }
+
+  deposit(amount) {
+    this.#correctAmount(amount);
+    this.#balance += amount;
+  }
+  
+  withdraw(amount) {
+    this.#correctAmount(amount);
+    if (amount > this.#balance) {
+      throw new Error("Недостаточно средств для снятия");
+    }
+
+    this.#balance -= amount;
+  }
+
+  #correctAmount(amount) {
+    if (!Number.isFinite(amount)) {
+      throw new Error("Сумма должна быть числом");
+    }
+
+    if (amount.toString().split(".")[1]?.length > 2) {
+      throw new Error("Сумма должна иметь два знака после запятой");
+    }
+
+    if (amount <= 0) {
+      throw new Error("Сумма не может быть отрицательной");
+    }
+  }
 }
 
 const account = new BankAccount();
-account.deposit(100);
-console.log(account.balance);
+account.deposit(400);
+console.log(account.getBalance());
 
-account.deposit = 500;
-console.log(account.balance);
+account.withdraw(200);
+console.log(account.getBalance());
