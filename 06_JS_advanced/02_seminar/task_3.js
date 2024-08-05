@@ -14,19 +14,26 @@
 функция должна использовать try и catch для проверки вводимого значения.
 */
 
-const numberInputEl = document.querySelector('.number-input');
-const checkButtonEl = document.querySelector('.check-button');
-const massageEl = document.querySelector('.message');
+const numberInputEl = document.querySelector(".number-input");
+const checkButtonEl = document.querySelector(".check-button");
+const massageEl = document.querySelector(".message");
 
-checkButtonEl.addEventListener('click', () => {
-    const value = numberInputEl.value;
-    // try {
-        if (Number.isFinite(value)) {
-            throw new Error('Введено не число');
-            
-        }
-        // massageEl.textContent = 'Введено число';
-    // } catch (error) {
-        // massageEl.textContent = error.message;
-    // }
+// checkButtonEl.addEventListener('click', () => {
+//         if (Number.isFinite(+numberInputEl.value) && numberInputEl.value !== '') {
+//             massageEl.textContent = 'Число';
+//         } else {
+//             massageEl.textContent = 'Введено не число';
+//         }
+// });
+
+// второй вариант
+checkButtonEl.addEventListener("click", () => {
+  try {
+    if (!Number.isFinite(+numberInputEl.value) || numberInputEl.value === "") {
+      throw new Error("Введено не число");
+    }
+    massageEl.textContent = "Число";
+  } catch (error) {
+    massageEl.textContent = error.message;
+  }
 });
