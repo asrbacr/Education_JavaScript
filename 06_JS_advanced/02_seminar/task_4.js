@@ -25,32 +25,35 @@ const addButtonEl = document.querySelector(".add-button");
 const itemListEl = document.querySelector(".item-list");
 const errorMessageEl = document.querySelector(".error-message");
 
-// addButtonEl.addEventListener('click', function (e) {
-//     if (userInputEl.value.length < 3 || userInputEl.value.length > 10) {
-//         errorMessageEl.textContent = "Значение не попадает в диапазон от 3 до 10 символов";
-//         return;
-//     }
-//     try {
-//         itemListEl.innerHTML += `<li>${userInputEl.value}</li>`;
-//         errorMessageEl.textContent = "";
-//     } catch (error) {
-//         errorMessageEl.textContent = error.message;
-//     } finally {
-//         console.log("Попытка добавления элемента завершена.");
-//     }
+// addButtonEl.addEventListener("click", function (e) {
+//   const userInput = userInputEl.value.trim();
+//   if (userInputEl.value.length < 3 || userInputEl.value.length > 10) {
+//     errorMessageEl.textContent =
+//     "Значение не попадает в диапазон от 3 до 10 символов";
+//   } else {
+//     const liEl = document.createElement("li");
+//     liEl.textContent = userInput;
+//     itemListEl.append(liEl);
+//     userInputEl.value = '';
+//     errorMessageEl.textContent = '';
+//   }
+//   console.log("Попытка добавления элемента завершена.");
 // });
 
 addButtonEl.addEventListener("click", function (e) {
   const userInput = userInputEl.value.trim();
-  if (userInputEl.value.length < 3 || userInputEl.value.length > 10) {
-    errorMessageEl.textContent =
-      "Значение не попадает в диапазон от 3 до 10 символов";
-  } else {
+  try {
+    if (userInputEl.value.length < 3 || userInputEl.value.length > 10) {
+      throw new Error("Значение не попадает в диапазон от 3 до 10 символов");
+    }
     const liEl = document.createElement("li");
     liEl.textContent = userInput;
     itemListEl.append(liEl);
-    userInputEl.value = '';
-    massageEl.textContent = '';
+    userInputEl.value = "";
+    errorMessageEl.textContent = "";
+  } catch (error) {
+    errorMessageEl.textContent = error.message;
+  } finally {
+    console.log("Попытка добавления элемента завершена.");
   }
-  console.log("Попытка добавления элемента завершена.");
 });
