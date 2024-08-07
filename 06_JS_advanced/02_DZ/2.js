@@ -65,3 +65,59 @@ const initialData = [
     ],
   },
 ];
+
+initialData.forEach((el) => {
+  console.log(el);
+});
+
+const containerEl = document.querySelector(".container");
+const feedbackListEls = document.querySelector(".feedback__list");
+const feedbackInputEl = document.querySelector(".feedback__input");
+const feedbackButtonEl = document.querySelector(".feedback__button");
+
+feedbackButtonEl.addEventListener("click", () => {
+  const feedbackText = feedbackInputEl.value.trim();
+  if (feedbackText.length >= 50 && feedbackText.length <= 500) {
+    const feedbackItemEl = document.createElement("li");
+    feedbackItemEl.textContent = feedbackText;
+    feedbackListEls.appendChild(feedbackItemEl);
+    feedbackInputEl.value = "";
+  } else {
+    alert("Отзыв должен содержать от 50 до 500 символов.");
+  }
+});
+
+function feedbackList(el) {
+  return `<li class="feedback__li">${el.text}</li>`;
+}
+
+function feedbackCart(el) {
+  return `<div class="feedback">
+      <h3 class="product">${el.product}</h3>
+      <ul class="feedback__list">
+        ${el.reviews.forEach((elLi) => {
+          feedbackList(elLi.text);
+        })}
+      </ul>
+
+      <form action="#">
+        <input class="feedback__input" type="text" name="add_feedback" required />
+        <input class="feedback__button" type="button" value="Добавить отзыв" />
+      </form>
+    </div>`;
+}
+
+function displayCatalog(selectCategory) {
+  productHTML = ``;
+ productsData.forEach((elem) => {
+     productHTML += feedbackCart(elem);
+ });
+ containerEl.innerHTML = productHTML;
+}
+
+containerEl.addEventListener("change", () => {
+  let selectCategory = containerEl.value;
+  console.log(selectCategory);
+  displayCatalog(selectCategory);
+});
+
