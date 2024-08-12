@@ -32,9 +32,20 @@ saveButtonEl.addEventListener("click", (e) => {
   localStorage.setItem(localStorageKey, JSON.stringify({ color, material }));
 });
 
-if(localStorage.getItem(localStorageKey)) {
+loadButtonEl.addEventListener("click", (e) => {
+  loadSettings();
+});
+
+loadSettings();
+
+function loadSettings() {
+  if (localStorage.getItem(localStorageKey)) {
     const localStorageData = JSON.parse(localStorage.getItem(localStorageKey));
-    // console.log(localStorageData);
     tableColorEl.value = localStorageData.color;
     chairMaterialEl.value = localStorageData.material;
+  }
 }
+
+clearButtonEl.addEventListener("click", (e) => {
+  localStorage.removeItem(localStorageKey);
+});
