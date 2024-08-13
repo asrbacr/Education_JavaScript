@@ -65,39 +65,46 @@ const initialData = [
     ],
   },
 ];
+const containerEl = document.querySelector(".container");
+let productHTML = ``;
 
 initialData.forEach((el) => {
-  console.log(el);
+  productHTML += feedbackCart(el);
+  containerEl.innerHTML = productHTML;
+  feedbackCart(el);
 });
 
-const containerEl = document.querySelector(".container");
-const feedbackListEls = document.querySelector(".feedback__list");
-const feedbackInputEl = document.querySelector(".feedback__input");
-const feedbackButtonEl = document.querySelector(".feedback__button");
+const feedbackListEls = document.querySelectorAll(".feedback__list");
+const feedbackInputEls = document.querySelectorAll(".feedback__input");
+const feedbackButtonEls = document.querySelectorAll(".feedback__button");
 
-feedbackButtonEl.addEventListener("click", () => {
-  const feedbackText = feedbackInputEl.value.trim();
-  if (feedbackText.length >= 50 && feedbackText.length <= 500) {
-    const feedbackItemEl = document.createElement("li");
-    feedbackItemEl.textContent = feedbackText;
-    feedbackListEls.appendChild(feedbackItemEl);
-    feedbackInputEl.value = "";
-  } else {
-    alert("Отзыв должен содержать от 50 до 500 символов.");
-  }
+feedbackButtonEls.forEach((feedbackButtonEl, i) => {
+  feedbackButtonEl.addEventListener("click", () => {
+    const feedbackText = feedbackInputEls[i].value.trim();
+    if (feedbackText.length >= 50 && feedbackText.length <= 500) {
+      const feedbackItemEl = document.createElement("li");
+      feedbackItemEl.textContent = feedbackText;
+      feedbackListEls[i].appendChild(feedbackItemEl);
+      feedbackInputEls[i].value = "";
+    } else {
+      alert("Отзыв должен содержать от 50 до 500 символов.");
+    }
+  });
 });
 
 function feedbackList(el) {
-  return `<li class="feedback__li">${el.text}</li>`;
+  let cartListHTML = ``;
+  el.reviews.forEach((elLi) => {
+    cartListHTML += `<li class="feedback__li">${elLi.text}</li>`;
+  });
+  return cartListHTML;
 }
 
 function feedbackCart(el) {
   return `<div class="feedback">
       <h3 class="product">${el.product}</h3>
       <ul class="feedback__list">
-        ${el.reviews.forEach((elLi) => {
-          feedbackList(elLi.text);
-        })}
+        ${feedbackList(el)}
       </ul>
 
       <form action="#">
@@ -106,18 +113,3 @@ function feedbackCart(el) {
       </form>
     </div>`;
 }
-
-function displayCatalog(selectCategory) {
-  productHTML = ``;
- productsData.forEach((elem) => {
-     productHTML += feedbackCart(elem);
- });
- containerEl.innerHTML = productHTML;
-}
-
-containerEl.addEventListener("change", () => {
-  let selectCategory = containerEl.value;
-  console.log(selectCategory);
-  displayCatalog(selectCategory);
-});
-
