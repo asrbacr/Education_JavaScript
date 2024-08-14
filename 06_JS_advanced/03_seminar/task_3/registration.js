@@ -12,10 +12,7 @@ registrationEl.addEventListener("click", (e) => {
   if (users.some((user) => user.login === login)) {
     alert("Такой пользователь уже существует");
     return;
-  } else {
-    users.push({ login, password });
-    localStorage.setItem(lsUsersKey, JSON.stringify(users));
   }
-
+  registerUser(login, password);
   location.href = "login.html";
 });
