@@ -1,6 +1,6 @@
-import { getAuthedLogin, logOutUser } from "./storage";
+import { getAuthedLogin, logOutUser } from "./storage.js";
 const helloEl = document.querySelector(".hello-massage");
-const logOutEl = document.querySelector(".exit"); 
+const logOutEl = document.querySelector(".exit");
 
 const authedUser = getAuthedLogin();
 if (!authedUser) {
@@ -10,7 +10,7 @@ if (!authedUser) {
 
 helloEl.textContent = `Привет, ${authedUser}`;
 
-logOutEl.addEventListener('click', () => {
-    logOutEl()
-    location.href = "login.html";
-})
+logOutEl.addEventListener("click", () => {
+  logOutUser();
+  location.href = "login.html";
+});
