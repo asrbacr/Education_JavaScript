@@ -1,23 +1,23 @@
+import { setFeedback } from "./storage.js";
+
 const nameProductEl = document.querySelector(".name-product");
 const textFeedbackEl = document.querySelector(".text-feedback");
 const sendFeedbackEl = document.querySelector(".send-feedback");
-const lsName = "name-product";
-const lsText = "text-feedback";
-const lsFeedbacks = "feedbacks";
-const feedback = [];
-const errorEl = '<div>Заполните все поля</div>'
-
+const errorEl = document.querySelector(".error");
 
 sendFeedbackEl.addEventListener("click", () => {
-    const nameProduct = nameProductEl.value;
-  const textFeedback = textFeedbackEl.value;
-  if (nameProduct !== "" && textFeedback !== "") {
-    feedback.push({
-          [lsName]: nameProduct,
-          [lsText]: textFeedback,
-    });
-    localStorage.setItem(lsFeedbacks, JSON.stringify(feedback));
-  } else {
-    sendFeedbackEl.append(errorEl);
-}
+  try {
+    setFeedback(nameProductEl, textFeedbackEl);
+  } catch (error) {
+    errorEl.innerHTML = error.message;
+  }
 });
+
+const delError = (elem) => {
+  elem.addEventListener("click", () => {
+    errorEl.innerHTML = "";
+  });
+};
+
+delError(nameProductEl);
+delError(textFeedbackEl);

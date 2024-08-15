@@ -4,11 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Оставить отзыв</title>
-    <script src="./feedback.js" defer></script>
+    <script src="./feedback.js" type="module"></script>
   </head>
   <body>
-    <input type="text" name="name-product" class="name-product" required />
-    <input type="text" name="text-feedback" class="text-feedback" required />
-    <button class="send-feedback" type="button">Добавить отзыв</button>
+    <div>
+      <input type="text" name="name-product" class="name-product" />
+      <input type="text" name="text-feedback" class="text-feedback" />
+      <button class="send-feedback" type="button">Добавить отзыв</button>
+    </div>
+      <p class="error"></p>
+      <a href="./list-feedback.html">На страницу отзывов<a>
   </body>
 </html>
