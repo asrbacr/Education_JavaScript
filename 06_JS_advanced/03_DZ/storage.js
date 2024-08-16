@@ -26,11 +26,11 @@ function getFeedback() {
 }
 
 function renderFeedback(container) {
-  const dataHTML = "";
+  let dataHTML = "";
   const feedbackList = getFeedback();
   console.log(feedbackList);
   feedbackList.forEach(elemList => {
-    console.log(feedbackCart(elemList));
+    // console.log(feedbackCart(elemList));
     // dataHTML += feedbackCart(elemList);
   });
 
@@ -48,8 +48,9 @@ function feedbackList(el) {
 }
 
 function feedbackCart(el) {
-  return `
+  return `<div>
   ${el[lsName]} ${el[lsText]}
+  </div>
   `
   // return `<div class="feedback">
   //     <h3 class="product">${[lsName].el}</h3>
