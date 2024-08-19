@@ -29,39 +29,47 @@ function renderFeedback(container) {
   let dataHTML = "";
   const feedbackList = getFeedback();
   console.log(feedbackList);
-  feedbackList.forEach(elemList => {
-    // console.log(feedbackCart(elemList));
-    // dataHTML += feedbackCart(elemList);
+
+
+
+  let tempArray = [];
+  for (const feedbackEl of feedbackList) {
+    tempArray.push(feedbackEl[lsName]);
+  }
+  let uniqFeedbackKey = [...new Set(tempArray)];
+  // console.log(tempArray);
+  console.log(uniqFeedbackKey);
+
+  uniqFeedbackKey.forEach((el) => {
+    dataHTML += `<h3>${el}</h3>`;
+    feedbackCart(el);
   });
+  
+  // feedbackList.forEach((elemList) => {
+  //   // console.log(feedbackCart(elemList));
+  //   dataHTML += feedbackCart(elemList);
+  // });
 
-  console.log(dataHTML);
-  // container.innerHTML = feedbackCart(dataHTML);
-  console.log(container);
+  // console.log(dataHTML);
+  container.innerHTML = dataHTML;
+  // console.log(container);
 }
-
+  
 function feedbackList(el) {
   let cartListHTML = ``;
-  el.forEach((elLi) => {
-    cartListHTML += `<li class="feedback__li">${elLi.text}</li>`;
-  });
+  // el.forEach((elLi) => {
+    cartListHTML += `<li class="feedback__li">${el[lsText]}</li>`;
+  // });
   return cartListHTML;
 }
 
 function feedbackCart(el) {
   return `<div>
-  ${el[lsName]} ${el[lsText]}
+  ${el[lsName]} - ${el[lsText]}
   </div>
-  `
-  // return `<div class="feedback">
-  //     <h3 class="product">${[lsName].el}</h3>
-  //     <ul class="feedback__list">
-  //       ${feedbackList(el)}
-  //     </ul>
-
-  //     <form action="#">
-  //       <input class="feedback__input" type="text" name="add_feedback" required />
-  //       <input class="feedback__button" type="button" value="Добавить отзыв" />
-  //     </form>
-  //   </div>`;
+  `;
+  // <ul class="feedback__list">
+  // ${feedbackList(el)}
+  // </ul>
 }
 export { setFeedback, getFeedback, renderFeedback };
