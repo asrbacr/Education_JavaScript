@@ -40,9 +40,21 @@ function renderFeedback(container) {
   // console.log(tempArray);
   console.log(uniqFeedbackKey);
 
-  uniqFeedbackKey.forEach((el) => {
-    dataHTML += `<h3>${el}</h3>`;
-    feedbackCart(el);
+  // uniqFeedbackKey.forEach((el) => {
+  //   feedbackCart(el);
+  // });
+  
+  uniqFeedbackKey.forEach((uniqElem, i) => {
+    dataHTML += `<h3>${uniqElem}</h3>`;
+    feedbackList.forEach((elem, j) => {
+      if (uniqElem === elem[lsName]) {
+        dataHTML += `<li>${elem[lsText]}</li>`;
+        // console.log(elem[lsText]);
+        // feedbackList(elem);
+      }
+      
+    });
+    
   });
   
   // feedbackList.forEach((elemList) => {
@@ -56,20 +68,15 @@ function renderFeedback(container) {
 }
   
 function feedbackList(el) {
-  let cartListHTML = ``;
+  // let cartListHTML = ``;
   // el.forEach((elLi) => {
-    cartListHTML += `<li class="feedback__li">${el[lsText]}</li>`;
+    // cartListHTML += `<li class="feedback__li">${el[lsText]}</li>`;
   // });
-  return cartListHTML;
+  // return cartListHTML;
+  return `<li>${el[lsText]}</li>`;
 }
 
 function feedbackCart(el) {
-  return `<div>
-  ${el[lsName]} - ${el[lsText]}
-  </div>
-  `;
-  // <ul class="feedback__list">
-  // ${feedbackList(el)}
-  // </ul>
+  return `<h3>${el}</h3>`;
 }
 export { setFeedback, getFeedback, renderFeedback };
