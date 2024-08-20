@@ -1,6 +1,8 @@
 const lsName = "name-product";
 const lsText = "text-feedback";
 const lsFeedbacks = "feedbacks";
+const removeFeedbackClass = "feedback__remove";
+const classFeedbackList = 'border__cart';
 
 function setFeedback(name, text) {
   const feedback = getFeedback();
@@ -30,53 +32,58 @@ function renderFeedback(container) {
   const feedbackList = getFeedback();
   console.log(feedbackList);
 
-
-
   let tempArray = [];
   for (const feedbackEl of feedbackList) {
     tempArray.push(feedbackEl[lsName]);
   }
   let uniqFeedbackKey = [...new Set(tempArray)];
-  // console.log(tempArray);
   console.log(uniqFeedbackKey);
 
-  // uniqFeedbackKey.forEach((el) => {
-  //   feedbackCart(el);
-  // });
-  
-  uniqFeedbackKey.forEach((uniqElem, i) => {
-    dataHTML += `<h3>${uniqElem}</h3>`;
-    feedbackList.forEach((elem, j) => {
+  uniqFeedbackKey.forEach((uniqElem) => {
+    dataHTML += `<div class="${classFeedbackList}">`;
+    dataHTML += feedbackCartHeader(uniqElem);
+    feedbackList.forEach((elem) => {
       if (uniqElem === elem[lsName]) {
-        dataHTML += `<li>${elem[lsText]}</li>`;
-        // console.log(elem[lsText]);
-        // feedbackList(elem);
+        dataHTML += feedbackCartLi(elem[lsText]);
       }
-      
     });
-    
+    dataHTML += '</div>';
   });
-  
-  // feedbackList.forEach((elemList) => {
-  //   // console.log(feedbackCart(elemList));
-  //   dataHTML += feedbackCart(elemList);
-  // });
 
-  // console.log(dataHTML);
   container.innerHTML = dataHTML;
-  // console.log(container);
-}
-  
-function feedbackList(el) {
-  // let cartListHTML = ``;
-  // el.forEach((elLi) => {
-    // cartListHTML += `<li class="feedback__li">${el[lsText]}</li>`;
-  // });
-  // return cartListHTML;
-  return `<li>${el[lsText]}</li>`;
+  removeFeedback();
 }
 
-function feedbackCart(el) {
+function removeFeedback() {
+  const removeFeedbackELs = document.querySelectorAll(
+    `.${removeFeedbackClass}`
+  );
+  removeFeedbackELs.forEach((elem, i) => {
+    const elemParent = elem.parentElement;
+    elem.addEventListener("click", () => {
+      // elemParent.remove();
+      console.log(`Родительский от кнопки`);
+      console.log(elemParent);
+      console.log(`__________`);
+      console.log(`Родительский от списка`);
+      console.log(elemParent.parentElement);
+      console.log(`__________`);
+
+    });
+  });
+}
+
+function feedbackCartLi(el) {
+  return `<div>
+  <li>${el}</li> ${feedbackButtonRemove()}
+  </div>`;
+}
+function feedbackCartHeader(el) {
   return `<h3>${el}</h3>`;
 }
+
+function feedbackButtonRemove() {
+  return `<button class="${removeFeedbackClass}">Удалить</button>`;
+}
+
 export { setFeedback, getFeedback, renderFeedback };
