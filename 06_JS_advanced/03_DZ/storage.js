@@ -2,7 +2,7 @@ const lsName = "name-product";
 const lsText = "text-feedback";
 const lsFeedbacks = "feedbacks";
 const removeFeedbackClass = "feedback__remove";
-const classFeedbackList = 'border__cart';
+const classFeedbackList = "border__cart";
 
 function setFeedback(name, text) {
   const feedback = getFeedback();
@@ -47,7 +47,7 @@ function renderFeedback(container) {
         dataHTML += feedbackCartLi(elem[lsText]);
       }
     });
-    dataHTML += '</div>';
+    dataHTML += "</div>";
   });
 
   container.innerHTML = dataHTML;
@@ -55,27 +55,43 @@ function renderFeedback(container) {
 }
 
 function removeFeedback() {
+  const feedbackList = getFeedback();
   const removeFeedbackELs = document.querySelectorAll(
     `.${removeFeedbackClass}`
   );
   removeFeedbackELs.forEach((elem, i) => {
     const elemParent = elem.parentElement;
     elem.addEventListener("click", () => {
-      // elemParent.remove();
+      const liEl = elemParent.children[0].innerHTML;
+      feedbackList.forEach(element => {
+        const textLs = element[lsText];
+        const nameLs = element[lsName];
+        if (liEl === textLs) {
+          localStorage.removeItem(element[lsName]);
+          elemParent.remove();
+          console.log(element[lsName]);
+        }
+        // console.log(element[lsText]);
+      });
+
+
+/*       console.log(`Сам элемент`);
+      console.log(liEl);
+      console.log(`__________`);
       console.log(`Родительский от кнопки`);
       console.log(elemParent);
       console.log(`__________`);
       console.log(`Родительский от списка`);
       console.log(elemParent.parentElement);
-      console.log(`__________`);
-
+      // console.log(lsElem);
+      console.log(`__________`); */
     });
   });
 }
 
 function feedbackCartLi(el) {
   return `<div>
-  <li>${el}</li> ${feedbackButtonRemove()}
+  <li class"li">${el}</li> ${feedbackButtonRemove()}
   </div>`;
 }
 function feedbackCartHeader(el) {
