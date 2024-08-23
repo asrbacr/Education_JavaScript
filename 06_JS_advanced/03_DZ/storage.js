@@ -61,16 +61,31 @@ function removeFeedback() {
   );
   removeFeedbackELs.forEach((elem, i) => {
     const elemParent = elem.parentElement;
+    const lsKey = feedbackList[i][lsName]; // это ключ из localStorage
+    const lsContent = feedbackList[i][lsText]; // это текст из localStorage
+    const idKey = elemParent.parentElement.querySelector('h3').innerHTML; // это ключ из HTML
+    const idValue = elemParent.children[0].innerHTML // это тест из HTML
+  
     elem.addEventListener("click", () => {
-      const liEl = elemParent.children[0].innerHTML;
-      feedbackList.forEach(element => {
-        const textLs = element[lsText];
-        const nameLs = element[lsName];
-        if (liEl === textLs) {
-          localStorage.removeItem(element[lsName]);
-          elemParent.remove();
-          console.log(element[lsName]);
-        }
+      console.log(lsKey);
+      console.log(lsContent);
+      console.log(idKey);
+      console.log(idValue);
+      console.log('___________');
+
+      feedbackList.forEach((element, i) => {
+        console.log(element);
+        console.log(i);
+
+        // const textLs = element[lsText];
+        // const nameLs = element[lsName];
+        // console.log(feedbackList);
+        // if (liEl === textLs) {
+          // localStorage.removeItem(i);
+          // console.log(feedbackList[i]);
+          // elemParent.remove();
+          // console.log(element[lsName]);
+        // }
         // console.log(element[lsText]);
       });
 
