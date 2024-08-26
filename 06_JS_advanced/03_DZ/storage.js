@@ -30,14 +30,14 @@ function getFeedback() {
 function renderFeedback(container) {
   let dataHTML = "";
   const feedbackList = getFeedback();
-  console.log(feedbackList);
+  // console.log(feedbackList);
 
   let tempArray = [];
   for (const feedbackEl of feedbackList) {
     tempArray.push(feedbackEl[lsName]);
   }
   let uniqFeedbackKey = [...new Set(tempArray)];
-  console.log(uniqFeedbackKey);
+  // console.log(uniqFeedbackKey);
 
   uniqFeedbackKey.forEach((uniqElem) => {
     dataHTML += `<div class="${classFeedbackList}">`;
@@ -67,27 +67,24 @@ function removeFeedback() {
     const idValue = elemParent.children[0].innerHTML // это тест из HTML
   
     elem.addEventListener("click", () => {
-      console.log(lsKey);
-      console.log(lsContent);
-      console.log(idKey);
-      console.log(idValue);
-      console.log('___________');
-
+      // console.log(lsKey);
+      // console.log(lsContent);
+      // console.log(idKey);
+      // console.log(idValue);
+      // console.log('___________');
       feedbackList.forEach((element, i) => {
-        console.log(element);
-        console.log(i);
+        if(element[lsText] === idValue && element[lsName] === idKey) {
+          const parentUl = elemParent.parentElement;
+          elemParent.remove();
+          feedbackList.splice(i, 1);
 
-        // const textLs = element[lsText];
-        // const nameLs = element[lsName];
-        // console.log(feedbackList);
-        // if (liEl === textLs) {
-          // localStorage.removeItem(i);
-          // console.log(feedbackList[i]);
-          // elemParent.remove();
-          // console.log(element[lsName]);
-        // }
-        // console.log(element[lsText]);
+          if (parentUl.querySelector('li') === null) {
+            parentUl.remove();
+          }
+        }
       });
+      // console.log(feedbackList);
+
 
 
 /*       console.log(`Сам элемент`);
