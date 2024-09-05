@@ -4,6 +4,8 @@
 // cel - document.createElement(); - создать элемент
 
 /*  [
+import { readFileSync } from 'fs';
+import { writeFileSync } from 'fs';
     'load' - событие срабатывает, когда весь контент (изображения, скрипты) загружен,
     'click' - событие происходит при нажатии на элемент,
     'mousemove' - событие, которое происходит при перемещении мыши над элементом,
@@ -19,3 +21,12 @@
 // document.removeAttribute('тег/название атрибута'); - удалить атрибут
 
 // document.classList.add('название') - add(добавить класс), remove(удалить класс)
+
+// Перепишите структуру RESTful API таким образом, чтобы она не содержала ошибок и соответствовала стандарту REST:
+// GET /orders/
+// GET /order/ID
+// POST /ORDER/new
+// ADD /order/add
+// PUT /order/edit/ID
+// REMOVE /order/
+
