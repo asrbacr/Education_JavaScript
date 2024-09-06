@@ -21,12 +21,3 @@ import { writeFileSync } from 'fs';
 // document.removeAttribute('тег/название атрибута'); - удалить атрибут
 
 // document.classList.add('название') - add(добавить класс), remove(удалить класс)
-
-// Перепишите структуру RESTful API таким образом, чтобы она не содержала ошибок и соответствовала стандарту REST:
-// GET /orders/
-// GET /order/ID
-// POST /ORDER/new
-// ADD /order/add
-// PUT /order/edit/ID
-// REMOVE /order/
-
