@@ -1,3 +1,5 @@
-export const Messages = ({ text }) => {
+const Messages = ({ text }) => {
   return <li>{text}</li>;
 };
+
+export default Messages;
