@@ -1,0 +1,23 @@
+.button__text {
+  text-transform: none;
+}
+
+.color {
+  label {
+    color: white;
+  }
+
+  fieldset {
+    border-color: white;
+  }
+
+  input {
+    color: white;
+  }
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
