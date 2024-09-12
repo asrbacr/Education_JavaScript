@@ -17,3 +17,27 @@
     align-items: center;
     gap: 20px;
 }
+
+.button__del {
+  color: red;
+}
+ul {
+  list-style-type: none;
+}
+ .form, .task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.task {
+  gap: 10px;
+}
+
+.form {
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/*# sourceMappingURL=todolist.module.css.map */

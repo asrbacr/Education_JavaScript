@@ -1,64 +1,49 @@
-import {
-  Button,
-  IconButton,
-  List,
-  TextField,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
-  styled,
-} from "@mui/material";
-import * as React from "react";
-
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import FolderIcon from "@mui/icons-material/Folder";
-import DeleteIcon from "@mui/icons-material/Delete";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import style from "./TodoList.module.css";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  TextField,
+} from "@mui/material";
 
-const listData = ["Задача 1", "Задача 2", "Задача 3"];
-function generate(element) {
-  return [0, 1, 2, 9].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    })
-  );
-}
-
-const Demo = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
-}));
 export const TodoList = () => {
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
-  const [todo, setTodo] = useState([]);
+  const [listData, setListData] = useState([""]);
+  const [todo, setTodo] = useState([
+    { id: "1", text: "Задача 1" },
+    { id: "2", text: "Задача 2" },
+    { id: "3", text: "Задача 3" },
+  ]);
+
   const addList = () => {
-    listData.push(todo);
-    console.log(listData);
+    setTodo([...todo, { text: listData, id: crypto.randomUUID() }]);
+  };
+
+  const delItem = (item) => {
+    todo.filter((task) => {
+      if (task.id !== item.target.id) {
+        console.log(task.id);
+        console.log(item.target.id);
+      }
+    });
   };
 
   const listTodos = () => {
-    // console.log(todo);
-    return listData.map((item, index) => {
+    return todo.map((item) => {
       return (
-        <List>
-          <ListItem
-            secondaryAction={
-              <IconButton edge="end" aria-label="delete">
-                <HighlightOffIcon />
-              </IconButton>
-            }
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <FolderIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={item} secondary={index} />
-          </ListItem>
-        </List>
+        <ListItem disablePadding key={item.id}>
+          <ListItemButton>
+            <ListItemText primary={item.text} />
+            <ListItemIcon id={item.id} onClick={delItem}>
+              <HighlightOffIcon id={item.id} className={style.button__del} />
+            </ListItemIcon>
+          </ListItemButton>
+        </ListItem>
       );
     });
   };
@@ -74,33 +59,12 @@ export const TodoList = () => {
           className={style.color}
           label="Введите задачу для добавления в список"
           placeholder="← кнопка добавить находится там"
-          onChange={(e) => setTodo(e.target.value.trim())}
+          onChange={(e) => {
+            setListData(e.target.value.trim());
+          }}
         />
       </div>
-      <Demo>
-        <List dense={dense}>
-          {generate(
-            <ListItem
-              secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemAvatar>
-                <Avatar>
-                  <FolderIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary="Single-line item"
-                secondary={secondary ? "Secondary text" : null}
-              />
-            </ListItem>
-          )}
-        </List>
-      </Demo>
-      {/* <ul>{listTodos()}</ul> */}
+      <ul>{listTodos()}</ul>
     </div>
   );
 };
