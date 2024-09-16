@@ -1,7 +1,10 @@
+import { Route } from 'react-router-dom';
 import { useState } from "react";
 import "./App.css";
 import { Box } from "./components/Box/Box";
 import { List } from "./components/List/List";
+import { AboutPage } from "./components/Page/AboutPage";
+import { Route, Router, Routes } from "react-router-dom";
 
 const list = ["item1", "item      2", "item3", "item3", "item3", "item3"];
 
@@ -32,7 +35,13 @@ function App() {
           </div>
         </Box>
       </div> */}
-      <List items={list} renderItem={renderItem}/>
+      {/* <List items={list} renderItem={renderItem}/> */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/about" element={<AboutPage/>} />
+        </Routes>
+      </Router>
     </>
   );
 }
