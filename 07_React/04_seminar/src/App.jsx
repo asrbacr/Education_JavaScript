@@ -5,6 +5,8 @@ import { List } from "./components/List/List";
 import { AboutPage } from "./components/Page/AboutPage/AboutPage";
 import { Route, BrowserRouter, Routes, NavLink } from "react-router-dom";
 import { HomePage } from "./components/Page/HomePage/HomePage";
+import { ListPage } from "./components/Products/ListPage/ListPage";
+import { DetailPage } from "./components/Products/DetailPage/DetailPage";
 
 const list = ["item1", "item 2", "item3", "item3", "item3", "item3"];
 const listProducts = [
@@ -45,7 +47,7 @@ function App() {
           <NavLink className="nav__link" to="/task-2">
             Лист. Задание 2
           </NavLink>
-          <NavLink className="nav__link" to="/products">
+          <NavLink className="nav__link" to="/goods">
             Страница товаров
           </NavLink>
         </nav>
@@ -79,11 +81,9 @@ function App() {
             path="/task-2"
             element={<List items={list} renderItem={renderItem} />}
           />
+          <Route path="/goods" element={<ListPage products={listProducts} />} />
+          <Route path="/goods/:productId" element={<DetailPage products={listProducts}/>} />
         </Routes>
-  
-        <ListPage />
-        <DetailPage />
-
       </BrowserRouter>
     </>
   );
