@@ -1,0 +1,23 @@
+ul {
+    list-style: none;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #000;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+
+    .img {
+        max-width: 500px;
+        max-width: 500px;
+    }
+}
