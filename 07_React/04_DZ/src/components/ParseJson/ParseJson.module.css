@@ -17,7 +17,18 @@ ul {
     padding: 5px;
 
     .img {
-        max-width: 500px;
-        max-width: 500px;
+        /* Так плохо */
+        width: 500px;
+        /* Так плохо */
+        height: 250px;
+    }
+}
+
+.li__list {
+    display: flex;
+
+    .img {
+        max-width: 300px;
+        max-height: 300px;
     }
 }
