@@ -2,6 +2,7 @@
     {
         "id": "1",
         "name": "Филе-палочки горбуши",
+        "name_en": "salmon",
         "image_group": "https://sun1-88.userapi.com/s/v1/ig2/hg-xbgpvDe3GiRhGbCunKQFvKQXTmkXniDkL89ZK8tpiB6T379v0g0qZ_HIhBMA0K2-xjDckALGPIaIprnG0fMwl.jpg?quality=96&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=MX98qPyxszvYqXq7IOA2bDNtvURgYGaNpg2H0nHm0C0&cs=807x458",
         "option": [
             {
@@ -29,6 +30,7 @@
     {
         "id": "2",
         "name": "Куриные ломтики",
+        "name_en": "chicken",
         "image_group": "https://sun9-62.userapi.com/s/v1/ig2/aqSFS-dBQjS_8Xjmaltx3yruCcxJpHa9HtUkHg-Xnsp2J0gye_ViorfwFCOviyQ7iytM23T1RGZeyIga8BzdGc_d.jpg?quality=96&as=32x18,48x27,72x41,108x61,160x91,240x136,360x204,480x273,540x307,640x363,720x409,1080x613,1280x727,1440x818,2560x1454&from=bu&u=4XZgBSqi-6uQZKyCW4NsfbnoRir-V634pXdqkFjKEYw&cs=807x458",
         "option": [
             {
