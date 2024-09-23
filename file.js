@@ -21,3 +21,10 @@ import { writeFileSync } from 'fs';
 // document.removeAttribute('тег/название атрибута'); - удалить атрибут
 
 // document.classList.add('название') - add(добавить класс), remove(удалить класс)
+
+// Библиотеки 
+// https://formik.org/ - библиотека для React для работы с формами
+// https://react-hook-form.com/ - библиотека для React для работы с формами
+// https://testing-library.com/docs/react-testing-library/intro/ - библиотека для работы с тестами кода
+// https://tanstack.com/
+// https://www.cypress.io/ - автотетсты
