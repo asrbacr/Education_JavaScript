@@ -1,0 +1,13 @@
+.nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+
+  & :hover {
+    color: tomato;
+  }
+
+  .active {
+    color: red;
+  }
+}

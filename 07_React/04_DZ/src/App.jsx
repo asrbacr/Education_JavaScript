@@ -1,28 +1,24 @@
-import './App.css'
+import s from "./App.module.css";
 import { Route, BrowserRouter, Routes, NavLink } from "react-router-dom";
-import { ParseJson } from './components/ParseJson/ParseJson';
-import url from '../data.json';
-import { ListPage } from './components/ListPage/ListPage';
-import { DetailPage } from './components/DetailPage/DetailPage';
-
+import { CardLists, ElemCardInList } from "./components/CardProduct/CardProduct";
+import data from "../data.json";
 
 function App() {
-
   return (
     <>
-      <BrowserRouter>
-        <nav>
-          <NavLink to="/">Выбор товара:</NavLink>
+      {/*       <BrowserRouter>
+        <nav className={s.nav}>
+          <NavLink to="/">Главная</NavLink>
+          <NavLink to="/product">Группы товаров</NavLink>
         </nav>
-        {/* <ParseJson data={url}/> */}
         <Routes>
-          <Route path='/' element={<ListPage products={url} />} />
-          <Route path='/:name_en/' element={<ListPage products={url} />} />
-          <Route path='/salmon/:weight' element={<DetailPage products={url.option} />} />
+          <Route path='/' element={<Header />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      {console.log(data)}
+      <CardLists items={data} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,26 @@
+.border {
+  max-width: 300px;
+  padding: 5px;
+
+  border: 1px solid #e7e7e7;
+  border-radius: 20px;
+}
+
+.img {
+    max-width: 250px;
+    max-height: 100px;
+}
+
+li {
+    list-style: none;
+    text-align: center;
+}
+
+ul {
+    display: flex;
+    gap: 10px;
+}
+
+img {
+    border-radius: 20px;
+}
