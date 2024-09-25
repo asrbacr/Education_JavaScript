@@ -1,6 +1,6 @@
 import s from "./App.module.css";
 import { Route, BrowserRouter, Routes, NavLink } from "react-router-dom";
-import { CardLists, ElemCardInList } from "./components/CardProduct/CardProduct";
+import { WeightList } from "./components/CardProduct/CardProduct";
 import data from "../data.json";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
         </Routes>
       </BrowserRouter> */}
       {console.log(data)}
-      <CardLists items={data} />
+      <WeightList items={data} />
     </>
   );
 }

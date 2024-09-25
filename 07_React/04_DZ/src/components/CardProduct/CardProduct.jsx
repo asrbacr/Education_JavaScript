@@ -23,3 +23,37 @@ export const CardLists = ({ items }) => {
     </>
   );
 };
+
+export const CardWeight = ({item}) => {
+  return(
+    <li className={[s.border]}>
+      <img src={item.image_product} alt={item.weight} className={s.img} />
+      <p>Вес: {item.weight} г</p>
+      <p>Цена: {item.price},00 руб.</p>
+    </li>
+  )
+}
+export const CardWeightList = ({ items }) => {
+  return (
+    <div>
+      <h2>{items.name}</h2>
+      <img src={items.image_group} alt={items.name} className={s.img} />
+
+      <ul>
+        {items.option.map((item) => (
+          <CardWeight item={item} />
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export const WeightList = ({ items }) => {
+  return (
+    <div>
+      {items.map((product) => (
+        <CardWeightList key={product.id} items={product} />
+      ))}
+    </div>
+  );
+};
