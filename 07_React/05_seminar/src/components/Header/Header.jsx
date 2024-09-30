@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 export const Header = () => {
-  const { username } = useContext(UserContext);
+  const { username, setUsername } = useContext(UserContext);
 
   return (
-    <div style={{ display: "flex", gap: "20px" }}>
+    <header style={{ display: "flex", gap: "20px" }}>
       <h2>Имя: {username}</h2>
       <button onClick={() => setUsername("гость")}>Выйти</button>
-    </div>
+    </header>
   );
 };
