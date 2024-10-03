@@ -5,6 +5,8 @@ import TodoList from "./Components/TodoList/TodoList";
 import store from "./Redux/store";
 import Goods from "./Components/Goods/Goods";
 import FavoriteList from "./Components/Goods/FavoriteList";
+import AddProduct from "./Components/AddProduct/AddProduct";
+import ProductList from "./Components/ProductList/ProductList";
 
 const products = [
   {
@@ -48,7 +50,9 @@ function App() {
         <Form />
         <TodoList />
         <Goods products={products} />
-        <FavoriteList products={products}/>
+        <FavoriteList products={products} />
+        <AddProduct />
+        <ProductList />
       </div>
     </Provider>
   );
