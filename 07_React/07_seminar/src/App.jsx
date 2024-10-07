@@ -1,29 +1,60 @@
-import { useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import "./App.css";
-import { useEffect } from "react";
-import { fetchUsersRequest } from "./Redux/userReduser";
+import Form from "./Components/Form/Form";
+import TodoList from "./Components/TodoList/TodoList";
+import store from "./Redux/store";
+import Goods from "./Components/Goods/Goods";
+import FavoriteList from "./Components/Goods/FavoriteList";
+import AddProduct from "./Components/AddProduct/AddProduct";
+import ProductList from "./Components/ProductList/ProductList";
+
+const products = [
+  {
+    id: 1,
+    name: "Samsung Galaxy S23",
+    description:
+      "Флагманский смартфон с отличной камерой и производительностью",
+    price: 75000,
+  },
+  {
+    id: 2,
+    name: "iPhone 15",
+    description:
+      "Последняя модель iPhone с новыми функциями и улучшенной камерой",
+    price: 90000,
+  },
+  {
+    id: 3,
+    name: "Google Pixel 8",
+    description: "Смартфон с чистым Android и лучшими камерами",
+    price: 60000,
+  },
+  {
+    id: 4,
+    name: "OnePlus 11",
+    description: "Смартфон с высокой производительностью и быстрой зарядкой",
+    price: 55000,
+  },
+  {
+    id: 5,
+    name: "Xiaomi Mi 13",
+    description: "Смартфон с хорошим соотношением цены и качества",
+    price: 40000,
+  },
+];
 
 function App() {
-  const { users, loading, error } = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchUsersRequest());
-  }, [dispatch]);
   return (
-    <>
-      <div className="App">
-        <h1>Пользователи</h1>
-        {loading && <p>Загрузка...</p>}
-        {error && <p>Ошибка: {error}</p>}
-        {users.length ? (
-          <ul>
-            {users.map((user) => (
-              <li key={user.id}>{user.name}</li>
-            ))}
-          </ul>
-        ) : null}
+    <Provider store={store}>
+      <div>
+        <Form />
+        <TodoList />
+        <Goods products={products} />
+        <FavoriteList products={products} />
+        <AddProduct />
+        <ProductList />
       </div>
-    </>
+    </Provider>
   );
 }
 

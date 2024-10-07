@@ -1,33 +1,20 @@
-import { createSagaMiddleware } from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "./Slices/todoSlice";
+import favoriteReducer from "./Slices/favoritesSlice";
+import productReducer from "./Slices/productSlice";
 import { loggerMiddleware } from "../middleware/loggerMiddleware";
-import usersSaga from "../sagas/userSaga";
-import userSlice from "./userReduser";
-
-/* const store = configureStore({
-  reducer: {
-    todo: todoReducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(loggerMiddleware),
-  // middleware: (getDefaultMiddleware) => [
-  //   ...getDefaultMiddleware(),
-  //   loggerMiddleware,
-  // ],
-}); */
-
-const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
-    users: userSlice,
+    todo: todoReducer,
+    favorite: favoriteReducer,
+    products: productReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(sagaMiddleware, loggerMiddleware),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware),
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware(),
+    loggerMiddleware,
+  ],
 });
-
-// then run the saga
-sagaMiddleware.run(usersSaga);
 
 export default store;
