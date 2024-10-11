@@ -17,12 +17,16 @@ const productSlice = createSlice({
       );
     },
     updateProduct: (state, action) => {
-      const index = state.products.findIndex(
-        (product) => product.id === action.payload.id,
-      );
-      if (index !== -1) {
-        state.products[index] = action.payload;
-      }
+      const product = state.products;
+      console.log("из slice ", state.products);
+      
+      const index = product.findIndex((p) => p.id === action.payload.id);
+      console.log("из slice ", index);
+
+      // product.name = action.payload.name;
+      // product.price = action.payload.price;
+      // product.available = action.payload.available;
+      // product.description = action.payload.description;
     },
     toggleAvailability: (state, action) => {
       const product = state.products.find(

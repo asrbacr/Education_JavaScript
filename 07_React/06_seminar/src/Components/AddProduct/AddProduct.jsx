@@ -14,13 +14,20 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
-      addProduct({ name, description, price: parseFloat(price), available })
+      addProduct({
+        name: "название товара",
+        description: "Описание товара",
+        price: "100",
+        available,
+      })
+      // addProduct({ name, description, price: parseFloat(price), available })
     );
     setName("");
     setDescription("");
     setPrice("");
     setAvailable(true);
   };
+  
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <input
@@ -28,13 +35,13 @@ const AddProduct = () => {
         placeholder="Название товара"
         value={name}
         onChange={(e) => setName(e.target.value)}
-      />
+        />
       <input
         type="text"
         placeholder="Описание"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-      />
+        />
       <input
         type="number"
         placeholder="Цена"

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
   toggleAvailability,
+  updateProduct
 } from "../../Redux/Slices/productSlice";
 
 const ProductList = () => {
@@ -22,12 +23,16 @@ const ProductList = () => {
               <p>{product.description}</p>
               <p>Цена: {product.price}</p>
               <p>Доступен для выбора: {product.available ? "Да" : "Нет"}</p>
+              <button onClick={() => dispatch(updateProduct(product))}>
+                Внести изменения
+              </button>
               <button onClick={() => dispatch(toggleAvailability(product.id))}>
                 Изменить доступность
               </button>
               <button onClick={() => dispatch(deleteProduct(product.id))}>
                 Удалить товар
               </button>
+              {console.log("из list ", product)}
             </li>
           ))}
         </ul>

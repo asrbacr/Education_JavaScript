@@ -49,8 +49,8 @@ function App() {
       <div>
         <Form />
         <TodoList />
-        <Goods products={products} />
-        <FavoriteList products={products} />
+        {/* <Goods products={products} /> */}
+        {/* <FavoriteList products={products} /> */}
         <AddProduct />
         <ProductList />
       </div>
