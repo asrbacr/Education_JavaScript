@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  products: [],
+  products: JSON.parse(localStorage.getItem("product-catalog") || "[]"),
+};
+
+const saveToLS = (products) => { //коллбэк=функция для сохранения в LocalStorage
+  localStorage.setItem("product-catalog", JSON.stringify(products));
 };
 
 const productSlice = createSlice({
@@ -13,24 +17,21 @@ const productSlice = createSlice({
     },
     deleteProduct: (state, action) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.payload,
+        (product) => product.id !== action.payload
       );
     },
-    updateProduct: (state, action) => {
-      const product = state.products;
-      console.log("из slice ", state.products);
-      
-      const index = product.findIndex((p) => p.id === action.payload.id);
-      console.log("из slice ", index);
-
-      // product.name = action.payload.name;
-      // product.price = action.payload.price;
-      // product.available = action.payload.available;
-      // product.description = action.payload.description;
+    changeProduct: (state, action) => {
+      const index = state.products.findIndex((product) => {
+        return product.id === action.payload.id;
+      });
+      if (index !== -1) {
+        state.products[index] = action.payload;
+        saveToLS(state.products);
+      }
     },
     toggleAvailability: (state, action) => {
       const product = state.products.find(
-        (product) => product.id === action.payload,
+        (product) => product.id === action.payload
       );
       if (product) {
         product.available = !product.available;
@@ -39,6 +40,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { addProduct, deleteProduct, updateProduct, toggleAvailability } =
+export const { addProduct, deleteProduct, changeProduct, toggleAvailability } =
   productSlice.actions;
 export default productSlice.reducer;

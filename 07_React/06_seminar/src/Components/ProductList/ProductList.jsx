@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
   toggleAvailability,
-  updateProduct
 } from "../../Redux/Slices/productSlice";
+import ChangeProduct from "../ChangeProduct/ChangeProduct";
+import s from "./ProductList.module.css";
 
 const ProductList = () => {
-    const  {products}  = useSelector((state) => state.products);
-    const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -23,9 +24,11 @@ const ProductList = () => {
               <p>{product.description}</p>
               <p>Цена: {product.price}</p>
               <p>Доступен для выбора: {product.available ? "Да" : "Нет"}</p>
-              <button onClick={() => dispatch(updateProduct(product))}>
-                Внести изменения
-              </button>
+              <div className={s.border}>
+                <button onClick={<ChangeProduct productId={product.id} />}>
+                  Внести изменения
+                </button>
+              </div>
               <button onClick={() => dispatch(toggleAvailability(product.id))}>
                 Изменить доступность
               </button>
@@ -42,3 +45,5 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+// https://github.com/666Racer/HW__React/blob/main/hw6/src/components/ProductList.jsx
