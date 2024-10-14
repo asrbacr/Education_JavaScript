@@ -63,7 +63,7 @@ const ChangeProduct = ({ productId }) => {
         />
       </label>
       <button className={s.column} type="submit">
-        Изменить продукт
+        Сохранить
       </button>
     </form>
   );

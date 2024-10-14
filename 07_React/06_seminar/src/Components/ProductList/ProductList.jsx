@@ -5,10 +5,30 @@ import {
 } from "../../Redux/Slices/productSlice";
 import ChangeProduct from "../ChangeProduct/ChangeProduct";
 import s from "./ProductList.module.css";
+import { useState } from "react";
 
 const ProductList = () => {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const [active, setActive] = useState("disable");
+  const toggleActive = () => {
+    setActive((prev) => (prev === "disable" ? "active" : "disable"));
+  };
+  const renderElemChange = (product) => {
+    if (toggleActive === "disable") {
+      return (
+        <div >
+          <button onClick={toggleActive}>Внести изменения</button>
+        </div>
+      );
+    }
+    return (
+      <div >
+        <ChangeProduct productId={product.id} />
+        <button onClick={toggleActive}>Сохранить</button>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -24,11 +44,7 @@ const ProductList = () => {
               <p>{product.description}</p>
               <p>Цена: {product.price}</p>
               <p>Доступен для выбора: {product.available ? "Да" : "Нет"}</p>
-              <div className={s.border}>
-                <button onClick={<ChangeProduct productId={product.id} />}>
-                  Внести изменения
-                </button>
-              </div>
+              {renderElemChange(product)}
               <button onClick={() => dispatch(toggleAvailability(product.id))}>
                 Изменить доступность
               </button>
