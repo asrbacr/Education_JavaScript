@@ -4,7 +4,7 @@ const initialState = {
   products: JSON.parse(localStorage.getItem("product-catalog") || "[]"),
 };
 
-const saveToLS = (products) => { //коллбэк=функция для сохранения в LocalStorage
+const saveToLS = (products) => {
   localStorage.setItem("product-catalog", JSON.stringify(products));
 };
 
