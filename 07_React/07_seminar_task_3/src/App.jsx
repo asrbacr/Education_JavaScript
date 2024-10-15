@@ -3,14 +3,23 @@ import { useSelector } from "react-redux";
 import "./App.css";
 import { useEffect } from "react";
 import { fetchUsers } from "./redux/userReduser";
+import { fetchUser } from "./redux/reduserUser";
 
 function App() {
   const { users, loading, error } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUsers(3));
+    dispatch(fetchUsers());
   }, [dispatch]);
+  
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+  
+  const handleUserClick = (userId) => {
+    dispatch(fetchUser(userId));
+  };
 
   return (
     <>
@@ -21,7 +30,10 @@ function App() {
         {users.length ? (
           <ul>
             {users.map((user) => (
-              <li key={user.id}>{user.name}</li>
+              <div style={{ display: "flex", gap: "20px" }}>
+                <li key={user.id}>{user.name}</li>
+                <button onClick={handleUserClick(user.id)}>Подробнее</button>
+              </div>
             ))}
           </ul>
         ) : (

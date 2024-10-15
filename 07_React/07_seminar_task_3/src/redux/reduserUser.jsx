@@ -2,13 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // const url = "https://jsonplaceholder.typicode.com/users";
 import url from "../data/users";
 
-export const fetchUsers = createAsyncThunk(
-  "users/fetchUsers",
-  async (_, thunkApi) => {
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
+  async (userId, thunkApi) => {
     try {
-      const response = await fetch(
-        url /* + "/" + id  {// id используется в 6 строке, первым оператором }*/
-      );
+      const response = await fetch(`${url}/${userId}`);
       if (!response.ok) {
         throw new Error("Страница не существует");
       }
@@ -20,32 +18,32 @@ export const fetchUsers = createAsyncThunk(
 );
 
 const initialState = {
-  users: [],
+  user: null,
   loading: false,
   error: null,
 };
 
-const usersSlice = createSlice({
+const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state) => {
+      .addCase(fetchUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchUser.fulfilled, (state, action) => {
         state.loading = false;
         state.users = action.payload;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const { fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure } =
-  usersSlice.actions;
-export default usersSlice.reducer;
+export const { fetchUserRequest, fetchUserSuccess, fetchUserFailure } =
+  userSlice.actions;
+export default userSlice.reducer;
