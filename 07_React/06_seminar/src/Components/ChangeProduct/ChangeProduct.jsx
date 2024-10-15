@@ -29,29 +29,26 @@ const ChangeProduct = ({ productId }) => {
   };
 
   return (
-    <form onSubmit={handlerSubmit}>
+    <form onSubmit={handlerSubmit} className={s.column}>
       <input
-        className={s.column}
         onChange={(e) => setName(e.target.value)}
         value={name}
         type="text"
-        placeholder="Название продукта"
+        placeholder="Новое название продукта"
         required
       />
       <input
-        className={s.column}
         onChange={(e) => setDescription(e.target.value)}
         value={description}
         type="text"
-        placeholder="Описание продукта"
+        placeholder="Новое описание продукта"
         required
       />
       <input
-        className={s.column}
         onChange={(e) => setPrice(e.target.value)}
         value={price}
         type="number"
-        placeholder="Цена продукта"
+        placeholder="Новая цена продукта"
         required
       />
       <label>
@@ -63,7 +60,7 @@ const ChangeProduct = ({ productId }) => {
         />
       </label>
       <button className={s.column} type="submit">
-        Сохранить
+        Применить
       </button>
     </form>
   );

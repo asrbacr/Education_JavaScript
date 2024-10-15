@@ -5,29 +5,31 @@ import {
 } from "../../Redux/Slices/productSlice";
 import ChangeProduct from "../ChangeProduct/ChangeProduct";
 import s from "./ProductList.module.css";
-import { useState } from "react";
+import { Component, useState } from "react";
 
 const ProductList = () => {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [active, setActive] = useState("disable");
+
   const toggleActive = () => {
     setActive((prev) => (prev === "disable" ? "active" : "disable"));
   };
+
   const renderElemChange = (product) => {
-    if (toggleActive === "disable") {
+    if (active === "disable") {
       return (
-        <div >
+        <div>
+          <ChangeProduct productId={product.id} />
+          <button onClick={toggleActive}>Скрыть блок</button>
+        </div>
+      );
+    } else
+      return (
+        <div>
           <button onClick={toggleActive}>Внести изменения</button>
         </div>
       );
-    }
-    return (
-      <div >
-        <ChangeProduct productId={product.id} />
-        <button onClick={toggleActive}>Сохранить</button>
-      </div>
-    );
   };
 
   return (
@@ -44,14 +46,17 @@ const ProductList = () => {
               <p>{product.description}</p>
               <p>Цена: {product.price}</p>
               <p>Доступен для выбора: {product.available ? "Да" : "Нет"}</p>
-              {renderElemChange(product)}
-              <button onClick={() => dispatch(toggleAvailability(product.id))}>
-                Изменить доступность
-              </button>
-              <button onClick={() => dispatch(deleteProduct(product.id))}>
-                Удалить товар
-              </button>
-              {console.log("из list ", product)}
+              <div className={s.column}>
+                {renderElemChange(product)}
+                <button
+                  onClick={() => dispatch(toggleAvailability(product.id))}
+                >
+                  Изменить доступность
+                </button>
+                <button onClick={() => dispatch(deleteProduct(product.id))}>
+                  Удалить товар
+                </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -61,5 +66,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-// https://github.com/666Racer/HW__React/blob/main/hw6/src/components/ProductList.jsx
