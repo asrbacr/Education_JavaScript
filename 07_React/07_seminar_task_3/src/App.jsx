@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUsers);
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   const handleUserClick = (userId) => {
@@ -26,29 +26,16 @@ function App() {
         <h1>Пользователи</h1>
         {loading && <p>Загрузка...</p>}
         {error && <p>Ошибка: {error}</p>}
-        {/* {users.length ? (
-          <ul>
+        {users.length ? (
+          <ul key={1}>
             {users.map((user) => (
               <div style={{ display: "flex", gap: "20px" }}>
                 <li key={user.id}>{user.name}</li>
-                <button onClick={() => handleUserClick(user.id)}>Подробнее</button>
-              </div>
-            ))}
-          </ul>
-        ) : (
-          ""
-        )} */}
-        {users.length ? (
-          <ul>
-            {users.map((user) => (
-              <details
-                key={user.id}
-                onClick={() => handleUserClick(user.id)}
-                style={{ display: "flex", gap: "20px" }}
-              >
-                <summary>{user.name}</summary>
+                <button onClick={() => handleUserClick(user.id)}>
+                  Подробнее
+                </button>
                 {loadingUser && <p>Загрузка...</p>}
-                {errorUser && <p>Ошибка {errorUser}</p>}
+                {errorUser && <p>Ошибка: {errorUser}</p>}
                 {userId === user.id ? (
                   <div>
                     <p>User: {user.username}</p>
@@ -57,7 +44,7 @@ function App() {
                 ) : (
                   ""
                 )}
-              </details>
+              </div>
             ))}
           </ul>
         ) : (
