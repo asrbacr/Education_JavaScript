@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// const url = "https://jsonplaceholder.typicode.com/users";
-import url from "../data/users";
+const url = "https://jsonplaceholder.typicode.com/users";
 
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
-  async (userId, thunkApi) => {
+  async (id, thunkApi) => {
     try {
-      const response = await fetch(`${url}/${userId}`);
+      const response = await fetch(`${url}/${id}`);
       if (!response.ok) {
         throw new Error("Страница не существует");
       }
@@ -18,13 +17,13 @@ export const fetchUser = createAsyncThunk(
 );
 
 const initialState = {
-  user: null,
+  user: [],
   loading: false,
   error: null,
 };
 
 const userSlice = createSlice({
-  name: "users",
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

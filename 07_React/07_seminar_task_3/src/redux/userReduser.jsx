@@ -1,14 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// const url = "https://jsonplaceholder.typicode.com/users";
-import url from "../data/users";
+const url = "https://jsonplaceholder.typicode.com/users";
+// import url from "../data/users";
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async (_, thunkApi) => {
     try {
-      const response = await fetch(
-        url /* + "/" + id  {// id используется в 6 строке, первым оператором }*/
-      );
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error("Страница не существует");
       }
